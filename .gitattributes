@@ -1,0 +1,2 @@
+# Notebooks are results, not source: count the repo by its Python
+*.ipynb linguist-documentation

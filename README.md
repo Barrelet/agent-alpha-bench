@@ -7,6 +7,19 @@ money but whether the judgement was any good (calibration, ablations, controls).
 
 See `BLUEPRINT.md` for the design and roadmap. MIT licensed; a research harness, not investment advice.
 
+## Results, in one picture
+
+**Start with [`notebooks/04_the_story.ipynb`](notebooks/04_the_story.ipynb) — the whole experiment in plain language, no code to read.**
+
+![Where three LLM prompts land among 500 random traders](docs/random_traders.png)
+
+One summer, one 8B model (Qwen3 on a laptop), three prompts, 50 large US stocks, the leaderboards' rules plus a
+25% position limit. Every prompt is scored against two things no leaderboard shows: a do-nothing portfolio and
+1,000 random traders playing by the same rules. Under the leaderboards' rules one prompt finished +11%, which
+turned out to be a single lucky bet that the position limit removes. With the limit, all three prompts land in the
+middle of the random pack; holding all 50 stocks beat 91 of 100 coin-flippers without a single decision. And the
+model stated 85% confidence on every one of its 50 trades, while 7–25% of them made money.
+
 ## Disclaimer
 
 This is a research tool, not investment advice. Every result in this repository comes from a
