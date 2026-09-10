@@ -191,15 +191,36 @@ ax.set_title("Long top-5 / short bottom-5 by forecast, 10-day cohorts, net of fe
 ax.legend(frameon=False, fontsize=8); ax.grid(axis="y", color="#e5e5e5"); ax.spines[["top", "right"]].set_visible(False)
 plt.tight_layout(); plt.show()""")
 
-md("""## 7. What this shows, and what it does not
+md("""## 7. What was the model actually doing?
 
-Fill in after the run. The questions this notebook can now answer, which notebook 03 could not:
+Before concluding, one check: how do the model's probabilities relate to the features it was shown? A daily Spearman correlation between `p_beat` and each column of the universe table says whether the ranking is the model's own or a copy of something in the table.""")
 
-1. **Does the model order names better than chance?** — the IC t-stat and the percentile against 1,000 random forecasters (sections 3 and 5).
-2. **Is its confidence information?** — calibration by bucket, Brier against the 0.25 floor, and the shape of the probability distribution (section 4). Three thousand forecasts make this quantitative; notebook 04 had fifty trades.
-3. **If it lost money in notebook 03, was it the signal or the trading?** — the spread against the portfolio return (section 6). A model with a positive, significant spread that lost money in the one-trade-a-day game had a sizing and discipline problem, not a forecasting one; a model with no spread never had anything to trade.
+code("""from alphabench.prompt import build_base, universe_rows
+FEATS = ["ret_1d", "ret_5d", "ret_10d", "ret_30d", "rsi_1d", "sma20_pct", "sma50_pct", "hi20_pct", "lo20_pct", "vol_ratio", "vol_30d_ann", "adv_20d_bn"]
+rows = []
+for name, p in fc_llm.items():
+    cors = {f: [] for f in FEATS}
+    for d in p.index:
+        tab = pd.DataFrame(universe_rows(build_base(md.asof(d), d, candidates="universe"))).set_index("symbol")
+        for f in FEATS:
+            cors[f].append(p.loc[d].rank().corr(tab[f].astype(float).rank()))
+    rows.append(pd.Series({f: np.nanmean(v) for f, v in cors.items()}, name=name))
+feature_corr = pd.DataFrame(rows).T
+feature_corr.round(3).style.format("{:+.3f}").set_caption("Mean daily Spearman correlation between the model's p_beat and each feature it was shown")""")
 
-What it still does not show: one summer, one 8B model, one prompt. Sixty overlapping 10-day windows in a calm market are about six independent observations of the horizon; the Newey-West correction is honest about that, and a year of data is the fix. The forecast contract itself (probability of beating the equal-weight mean) is one of several possible; a model that is good at direction but poor at relative ranking would look bad here and might not elsewhere.""")
+md("""## 8. What this shows, and what it does not
+
+**The model ranks names backwards, and not by chance.** Its mean daily rank IC over 58 scored days is −0.060. A thousand random forecasters on the same days and names produce mean ICs with a standard deviation of about 0.02; the model sits below every one of them, three standard deviations on the wrong side. The quintile spread says the same thing in return units: the fifth of names it liked most underperformed the fifth it liked least by 1.9% per 10 days, again below all 1,000 random forecasters. In notebook 03 the question was whether a handful of losing trades meant anything; here the answer is that the ranking behind them was systematically inverted.
+
+**It is a momentum proxy.** Section 7 explains why. The model's daily ordering correlates at 0.66 to 0.70 with `sma20_pct`, `rsi_1d` and `ret_10d`, the trend columns of the table it was shown. It reads what has gone up and says it will keep going up. This summer that was the losing bet: the plain 10-day momentum control scored an IC of −0.09 and its reverse +0.09, and the model landed between momentum and random, which is exactly what a noisy copy of momentum looks like. It contributed no information of its own; it borrowed momentum's and diluted it.
+
+**Its probabilities are not probabilities.** Told it would be scored on calibration, the model became timid rather than calibrated: 94% of its values lie between 0.3 and 0.7, the standard deviation is 0.095, only 6% are more than 0.2 from a coin flip, and the mean is 0.469, below the 0.5 the prompt said to expect. The calibration curve is flat at about 0.5 in every bucket; the one bucket where it leaned (stated 0.58, n = 295) realised 0.42. Brier 0.264 against the 0.25 floor: worse than writing 0.5 for everything. Notebook 04 found a constant 0.85 on 50 trades; this is the same finding on 2,861 forecasts, with the sign flipped by the prompt. The model's confidence follows the instructions, not the data.
+
+**The notebook 03 losses were the signal, not the trading.** A mechanical portfolio built from these forecasts (top 5 long, bottom 5 short, 10-day cohorts) lost 14.8% gross and 16.9% net, almost identical to the momentum control (−15.1% and −17.1%). Fees explain 2.4 points; the ranking explains the rest. No sizing rule, stop or prompt discipline would have rescued a book built on an inverted ordering.
+
+**What it does not show.** One summer in which momentum reversed is a regime, not a verdict. The same model would have looked good in a trending quarter for the same bad reason. The claim that should survive any window is the narrower one: *this model's ranking is a momentum proxy carrying no information of its own*; in a second window that would show up as an IC near zero rather than below it. It is also one 8B model and one prompt; a larger model, or a prompt that hides the trend columns, could behave differently, and the harness now measures that in an afternoon. Two technical notes: the Newey-West t-statistics can overstate significance when the sampled autocorrelation of daily ICs happens to be negative (`control_random_1` shows −4.4 by chance), so the percentile against the random forecasters is the number to quote; and two of the sixty dates await 10 more trading days of prices before they can be scored.
+
+**Next.** Anonymise the tickers and drop the trend columns, to see whether the model has any view at all once it cannot copy momentum; run the same 60 days with several seeds at temperature 0.7, to see whether the ranking is stable or a draw; and a second, trending window, to separate "momentum proxy" from "wrong this summer".""")
 
 nb["cells"] = cells
 out = Path(__file__).resolve().parent.parent / "notebooks" / "05_forecast_first.ipynb"
