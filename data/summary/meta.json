@@ -1,0 +1,16 @@
+{
+  "runs": {
+    "leaderboard_rules": {
+      "label": "leaderboard rules (no position limit)",
+      "start": "2026-06-01",
+      "end": "2026-08-26",
+      "cycles": 60
+    },
+    "position_limit": {
+      "label": "25% position limit",
+      "start": "2026-06-01",
+      "end": "2026-08-26",
+      "cycles": 60
+    }
+  }
+}

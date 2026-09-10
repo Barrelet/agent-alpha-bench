@@ -1,0 +1,855 @@
+run,agent,date,equity
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-06-01,10000.0
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-06-02,9979.83
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-06-03,9964.89
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-06-04,10044.9
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-06-05,9906.23
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-06-08,9892.76
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-06-09,9877.84
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-06-10,9864.53
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-06-11,9855.18
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-06-12,9871.91
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-06-15,9858.75
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-06-16,9821.58
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-06-17,9797.16
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-06-18,9797.16
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-06-22,9798.89
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-06-23,9829.71
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-06-24,9804.62
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-06-25,9645.02
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-06-26,9614.29
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-06-29,9524.84
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-06-30,9526.28
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-07-01,9520.14
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-07-02,9530.37
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-07-06,9521.33
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-07-07,9492.8
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-07-08,9457.41
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-07-09,9457.41
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-07-10,9453.67
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-07-13,9446.55
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-07-14,9432.39
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-07-15,9498.75
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-07-16,9412.01
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-07-17,9365.6
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-07-20,9358.62
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-07-21,9351.78
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-07-22,9340.5
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-07-23,9314.85
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-07-24,9287.24
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-07-27,9316.33
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-07-28,9357.02
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-07-29,9314.64
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-07-30,10182.59
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-07-31,10442.37
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-08-03,10874.77
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-08-04,11011.94
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-08-05,10892.39
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-08-06,11169.47
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-08-07,11172.37
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-08-10,11308.01
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-08-11,11257.73
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-08-12,11003.44
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-08-13,11102.88
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-08-14,11069.81
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-08-17,10733.52
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-08-18,10762.12
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-08-19,10822.0
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-08-20,10771.63
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-08-21,10818.42
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-08-24,10909.54
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-08-25,11008.04
+leaderboard_rules,Prompt 1 — leaderboard mandate,2026-08-26,11101.25
+leaderboard_rules,Prompt 2 — plus risk rules,2026-06-01,10000.0
+leaderboard_rules,Prompt 2 — plus risk rules,2026-06-02,9979.83
+leaderboard_rules,Prompt 2 — plus risk rules,2026-06-03,9979.83
+leaderboard_rules,Prompt 2 — plus risk rules,2026-06-04,9979.83
+leaderboard_rules,Prompt 2 — plus risk rules,2026-06-05,9979.83
+leaderboard_rules,Prompt 2 — plus risk rules,2026-06-08,9979.83
+leaderboard_rules,Prompt 2 — plus risk rules,2026-06-09,9897.89
+leaderboard_rules,Prompt 2 — plus risk rules,2026-06-10,9868.2
+leaderboard_rules,Prompt 2 — plus risk rules,2026-06-11,9910.42
+leaderboard_rules,Prompt 2 — plus risk rules,2026-06-12,9862.41
+leaderboard_rules,Prompt 2 — plus risk rules,2026-06-15,9856.15
+leaderboard_rules,Prompt 2 — plus risk rules,2026-06-16,9844.38
+leaderboard_rules,Prompt 2 — plus risk rules,2026-06-17,9826.34
+leaderboard_rules,Prompt 2 — plus risk rules,2026-06-18,9806.55
+leaderboard_rules,Prompt 2 — plus risk rules,2026-06-22,9778.71
+leaderboard_rules,Prompt 2 — plus risk rules,2026-06-23,9716.72
+leaderboard_rules,Prompt 2 — plus risk rules,2026-06-24,9718.27
+leaderboard_rules,Prompt 2 — plus risk rules,2026-06-25,9657.94
+leaderboard_rules,Prompt 2 — plus risk rules,2026-06-26,9705.14
+leaderboard_rules,Prompt 2 — plus risk rules,2026-06-29,9790.61
+leaderboard_rules,Prompt 2 — plus risk rules,2026-06-30,9771.3
+leaderboard_rules,Prompt 2 — plus risk rules,2026-07-01,9833.97
+leaderboard_rules,Prompt 2 — plus risk rules,2026-07-02,9857.34
+leaderboard_rules,Prompt 2 — plus risk rules,2026-07-06,9894.18
+leaderboard_rules,Prompt 2 — plus risk rules,2026-07-07,9929.19
+leaderboard_rules,Prompt 2 — plus risk rules,2026-07-08,9846.47
+leaderboard_rules,Prompt 2 — plus risk rules,2026-07-09,9979.29
+leaderboard_rules,Prompt 2 — plus risk rules,2026-07-10,9906.38
+leaderboard_rules,Prompt 2 — plus risk rules,2026-07-13,9985.93
+leaderboard_rules,Prompt 2 — plus risk rules,2026-07-14,9993.2
+leaderboard_rules,Prompt 2 — plus risk rules,2026-07-15,10294.82
+leaderboard_rules,Prompt 2 — plus risk rules,2026-07-16,10090.1
+leaderboard_rules,Prompt 2 — plus risk rules,2026-07-17,9982.7
+leaderboard_rules,Prompt 2 — plus risk rules,2026-07-20,10094.14
+leaderboard_rules,Prompt 2 — plus risk rules,2026-07-21,9995.62
+leaderboard_rules,Prompt 2 — plus risk rules,2026-07-22,9886.6
+leaderboard_rules,Prompt 2 — plus risk rules,2026-07-23,9434.77
+leaderboard_rules,Prompt 2 — plus risk rules,2026-07-24,9372.18
+leaderboard_rules,Prompt 2 — plus risk rules,2026-07-27,9343.11
+leaderboard_rules,Prompt 2 — plus risk rules,2026-07-28,9321.71
+leaderboard_rules,Prompt 2 — plus risk rules,2026-07-29,9151.71
+leaderboard_rules,Prompt 2 — plus risk rules,2026-07-30,9509.06
+leaderboard_rules,Prompt 2 — plus risk rules,2026-07-31,10965.91
+leaderboard_rules,Prompt 2 — plus risk rules,2026-08-03,11468.21
+leaderboard_rules,Prompt 2 — plus risk rules,2026-08-04,11201.72
+leaderboard_rules,Prompt 2 — plus risk rules,2026-08-05,11009.11
+leaderboard_rules,Prompt 2 — plus risk rules,2026-08-06,10993.36
+leaderboard_rules,Prompt 2 — plus risk rules,2026-08-07,11083.0
+leaderboard_rules,Prompt 2 — plus risk rules,2026-08-10,11228.77
+leaderboard_rules,Prompt 2 — plus risk rules,2026-08-11,10993.77
+leaderboard_rules,Prompt 2 — plus risk rules,2026-08-12,10792.28
+leaderboard_rules,Prompt 2 — plus risk rules,2026-08-13,10705.47
+leaderboard_rules,Prompt 2 — plus risk rules,2026-08-14,10605.33
+leaderboard_rules,Prompt 2 — plus risk rules,2026-08-17,10551.22
+leaderboard_rules,Prompt 2 — plus risk rules,2026-08-18,10476.12
+leaderboard_rules,Prompt 2 — plus risk rules,2026-08-19,10734.14
+leaderboard_rules,Prompt 2 — plus risk rules,2026-08-20,10502.77
+leaderboard_rules,Prompt 2 — plus risk rules,2026-08-21,10443.01
+leaderboard_rules,Prompt 2 — plus risk rules,2026-08-24,10581.91
+leaderboard_rules,Prompt 2 — plus risk rules,2026-08-25,10541.13
+leaderboard_rules,Prompt 2 — plus risk rules,2026-08-26,10499.12
+leaderboard_rules,Prompt 3 — full decision procedure,2026-06-01,10000.0
+leaderboard_rules,Prompt 3 — full decision procedure,2026-06-02,10048.35
+leaderboard_rules,Prompt 3 — full decision procedure,2026-06-03,10016.21
+leaderboard_rules,Prompt 3 — full decision procedure,2026-06-04,10022.52
+leaderboard_rules,Prompt 3 — full decision procedure,2026-06-05,9997.22
+leaderboard_rules,Prompt 3 — full decision procedure,2026-06-08,9959.49
+leaderboard_rules,Prompt 3 — full decision procedure,2026-06-09,9949.2
+leaderboard_rules,Prompt 3 — full decision procedure,2026-06-10,9911.37
+leaderboard_rules,Prompt 3 — full decision procedure,2026-06-11,9911.37
+leaderboard_rules,Prompt 3 — full decision procedure,2026-06-12,9876.57
+leaderboard_rules,Prompt 3 — full decision procedure,2026-06-15,9912.0
+leaderboard_rules,Prompt 3 — full decision procedure,2026-06-16,9930.88
+leaderboard_rules,Prompt 3 — full decision procedure,2026-06-17,9908.85
+leaderboard_rules,Prompt 3 — full decision procedure,2026-06-18,9922.64
+leaderboard_rules,Prompt 3 — full decision procedure,2026-06-22,9915.95
+leaderboard_rules,Prompt 3 — full decision procedure,2026-06-23,9897.8
+leaderboard_rules,Prompt 3 — full decision procedure,2026-06-24,9889.63
+leaderboard_rules,Prompt 3 — full decision procedure,2026-06-25,9801.79
+leaderboard_rules,Prompt 3 — full decision procedure,2026-06-26,9801.79
+leaderboard_rules,Prompt 3 — full decision procedure,2026-06-29,9787.47
+leaderboard_rules,Prompt 3 — full decision procedure,2026-06-30,9787.47
+leaderboard_rules,Prompt 3 — full decision procedure,2026-07-01,9787.47
+leaderboard_rules,Prompt 3 — full decision procedure,2026-07-02,9882.09
+leaderboard_rules,Prompt 3 — full decision procedure,2026-07-06,9908.91
+leaderboard_rules,Prompt 3 — full decision procedure,2026-07-07,9895.6
+leaderboard_rules,Prompt 3 — full decision procedure,2026-07-08,9913.77
+leaderboard_rules,Prompt 3 — full decision procedure,2026-07-09,9932.6
+leaderboard_rules,Prompt 3 — full decision procedure,2026-07-10,9926.61
+leaderboard_rules,Prompt 3 — full decision procedure,2026-07-13,9939.86
+leaderboard_rules,Prompt 3 — full decision procedure,2026-07-14,9923.55
+leaderboard_rules,Prompt 3 — full decision procedure,2026-07-15,10007.68
+leaderboard_rules,Prompt 3 — full decision procedure,2026-07-16,10046.01
+leaderboard_rules,Prompt 3 — full decision procedure,2026-07-17,10049.21
+leaderboard_rules,Prompt 3 — full decision procedure,2026-07-20,10001.62
+leaderboard_rules,Prompt 3 — full decision procedure,2026-07-21,10009.27
+leaderboard_rules,Prompt 3 — full decision procedure,2026-07-22,9996.96
+leaderboard_rules,Prompt 3 — full decision procedure,2026-07-23,9968.81
+leaderboard_rules,Prompt 3 — full decision procedure,2026-07-24,10044.41
+leaderboard_rules,Prompt 3 — full decision procedure,2026-07-27,10070.3
+leaderboard_rules,Prompt 3 — full decision procedure,2026-07-28,10091.4
+leaderboard_rules,Prompt 3 — full decision procedure,2026-07-29,10078.82
+leaderboard_rules,Prompt 3 — full decision procedure,2026-07-30,10047.14
+leaderboard_rules,Prompt 3 — full decision procedure,2026-07-31,9883.95
+leaderboard_rules,Prompt 3 — full decision procedure,2026-08-03,9847.41
+leaderboard_rules,Prompt 3 — full decision procedure,2026-08-04,9887.08
+leaderboard_rules,Prompt 3 — full decision procedure,2026-08-05,9897.86
+leaderboard_rules,Prompt 3 — full decision procedure,2026-08-06,9907.25
+leaderboard_rules,Prompt 3 — full decision procedure,2026-08-07,9913.37
+leaderboard_rules,Prompt 3 — full decision procedure,2026-08-10,9881.39
+leaderboard_rules,Prompt 3 — full decision procedure,2026-08-11,9859.08
+leaderboard_rules,Prompt 3 — full decision procedure,2026-08-12,9841.36
+leaderboard_rules,Prompt 3 — full decision procedure,2026-08-13,9861.41
+leaderboard_rules,Prompt 3 — full decision procedure,2026-08-14,9865.87
+leaderboard_rules,Prompt 3 — full decision procedure,2026-08-17,9863.61
+leaderboard_rules,Prompt 3 — full decision procedure,2026-08-18,9893.18
+leaderboard_rules,Prompt 3 — full decision procedure,2026-08-19,9938.48
+leaderboard_rules,Prompt 3 — full decision procedure,2026-08-20,9901.64
+leaderboard_rules,Prompt 3 — full decision procedure,2026-08-21,9888.66
+leaderboard_rules,Prompt 3 — full decision procedure,2026-08-24,9895.25
+leaderboard_rules,Prompt 3 — full decision procedure,2026-08-25,9892.32
+leaderboard_rules,Prompt 3 — full decision procedure,2026-08-26,9913.88
+leaderboard_rules,Momentum rule (long only),2026-06-01,10000.0
+leaderboard_rules,Momentum rule (long only),2026-06-02,10048.34
+leaderboard_rules,Momentum rule (long only),2026-06-03,9929.7
+leaderboard_rules,Momentum rule (long only),2026-06-04,9909.54
+leaderboard_rules,Momentum rule (long only),2026-06-05,9784.95
+leaderboard_rules,Momentum rule (long only),2026-06-08,9805.87
+leaderboard_rules,Momentum rule (long only),2026-06-09,9697.16
+leaderboard_rules,Momentum rule (long only),2026-06-10,9659.0
+leaderboard_rules,Momentum rule (long only),2026-06-11,9652.38
+leaderboard_rules,Momentum rule (long only),2026-06-12,9673.53
+leaderboard_rules,Momentum rule (long only),2026-06-15,9671.58
+leaderboard_rules,Momentum rule (long only),2026-06-16,9704.54
+leaderboard_rules,Momentum rule (long only),2026-06-17,9688.63
+leaderboard_rules,Momentum rule (long only),2026-06-18,9675.47
+leaderboard_rules,Momentum rule (long only),2026-06-22,9748.43
+leaderboard_rules,Momentum rule (long only),2026-06-23,9719.91
+leaderboard_rules,Momentum rule (long only),2026-06-24,9814.45
+leaderboard_rules,Momentum rule (long only),2026-06-25,9895.36
+leaderboard_rules,Momentum rule (long only),2026-06-26,9826.09
+leaderboard_rules,Momentum rule (long only),2026-06-29,9922.54
+leaderboard_rules,Momentum rule (long only),2026-06-30,9973.31
+leaderboard_rules,Momentum rule (long only),2026-07-01,9888.79
+leaderboard_rules,Momentum rule (long only),2026-07-02,9942.54
+leaderboard_rules,Momentum rule (long only),2026-07-06,9981.06
+leaderboard_rules,Momentum rule (long only),2026-07-07,9845.87
+leaderboard_rules,Momentum rule (long only),2026-07-08,9607.8
+leaderboard_rules,Momentum rule (long only),2026-07-09,9593.79
+leaderboard_rules,Momentum rule (long only),2026-07-10,9526.4
+leaderboard_rules,Momentum rule (long only),2026-07-13,9585.22
+leaderboard_rules,Momentum rule (long only),2026-07-14,9302.94
+leaderboard_rules,Momentum rule (long only),2026-07-15,9405.61
+leaderboard_rules,Momentum rule (long only),2026-07-16,9373.14
+leaderboard_rules,Momentum rule (long only),2026-07-17,9301.87
+leaderboard_rules,Momentum rule (long only),2026-07-20,9293.26
+leaderboard_rules,Momentum rule (long only),2026-07-21,9247.33
+leaderboard_rules,Momentum rule (long only),2026-07-22,9251.43
+leaderboard_rules,Momentum rule (long only),2026-07-23,9121.62
+leaderboard_rules,Momentum rule (long only),2026-07-24,9191.69
+leaderboard_rules,Momentum rule (long only),2026-07-27,9144.95
+leaderboard_rules,Momentum rule (long only),2026-07-28,9223.03
+leaderboard_rules,Momentum rule (long only),2026-07-29,9304.67
+leaderboard_rules,Momentum rule (long only),2026-07-30,9170.25
+leaderboard_rules,Momentum rule (long only),2026-07-31,9126.63
+leaderboard_rules,Momentum rule (long only),2026-08-03,9163.57
+leaderboard_rules,Momentum rule (long only),2026-08-04,9193.58
+leaderboard_rules,Momentum rule (long only),2026-08-05,9244.11
+leaderboard_rules,Momentum rule (long only),2026-08-06,9339.3
+leaderboard_rules,Momentum rule (long only),2026-08-07,9524.23
+leaderboard_rules,Momentum rule (long only),2026-08-10,9657.68
+leaderboard_rules,Momentum rule (long only),2026-08-11,9609.83
+leaderboard_rules,Momentum rule (long only),2026-08-12,9584.81
+leaderboard_rules,Momentum rule (long only),2026-08-13,9649.13
+leaderboard_rules,Momentum rule (long only),2026-08-14,9549.49
+leaderboard_rules,Momentum rule (long only),2026-08-17,9332.03
+leaderboard_rules,Momentum rule (long only),2026-08-18,9380.65
+leaderboard_rules,Momentum rule (long only),2026-08-19,9723.32
+leaderboard_rules,Momentum rule (long only),2026-08-20,9666.16
+leaderboard_rules,Momentum rule (long only),2026-08-21,9738.78
+leaderboard_rules,Momentum rule (long only),2026-08-24,9687.34
+leaderboard_rules,Momentum rule (long only),2026-08-25,9706.03
+leaderboard_rules,Momentum rule (long only),2026-08-26,9527.62
+leaderboard_rules,Momentum rule (long and short),2026-06-01,10000.0
+leaderboard_rules,Momentum rule (long and short),2026-06-02,10048.34
+leaderboard_rules,Momentum rule (long and short),2026-06-03,9929.7
+leaderboard_rules,Momentum rule (long and short),2026-06-04,9909.54
+leaderboard_rules,Momentum rule (long and short),2026-06-05,9784.95
+leaderboard_rules,Momentum rule (long and short),2026-06-08,9805.87
+leaderboard_rules,Momentum rule (long and short),2026-06-09,9697.16
+leaderboard_rules,Momentum rule (long and short),2026-06-10,9659.0
+leaderboard_rules,Momentum rule (long and short),2026-06-11,9652.38
+leaderboard_rules,Momentum rule (long and short),2026-06-12,9673.53
+leaderboard_rules,Momentum rule (long and short),2026-06-15,9671.58
+leaderboard_rules,Momentum rule (long and short),2026-06-16,9704.54
+leaderboard_rules,Momentum rule (long and short),2026-06-17,9688.63
+leaderboard_rules,Momentum rule (long and short),2026-06-18,9675.47
+leaderboard_rules,Momentum rule (long and short),2026-06-22,9748.43
+leaderboard_rules,Momentum rule (long and short),2026-06-23,9719.91
+leaderboard_rules,Momentum rule (long and short),2026-06-24,9814.45
+leaderboard_rules,Momentum rule (long and short),2026-06-25,9895.36
+leaderboard_rules,Momentum rule (long and short),2026-06-26,9826.09
+leaderboard_rules,Momentum rule (long and short),2026-06-29,9922.54
+leaderboard_rules,Momentum rule (long and short),2026-06-30,9973.31
+leaderboard_rules,Momentum rule (long and short),2026-07-01,9888.79
+leaderboard_rules,Momentum rule (long and short),2026-07-02,9942.54
+leaderboard_rules,Momentum rule (long and short),2026-07-06,9981.06
+leaderboard_rules,Momentum rule (long and short),2026-07-07,9845.87
+leaderboard_rules,Momentum rule (long and short),2026-07-08,9607.8
+leaderboard_rules,Momentum rule (long and short),2026-07-09,9593.79
+leaderboard_rules,Momentum rule (long and short),2026-07-10,9526.4
+leaderboard_rules,Momentum rule (long and short),2026-07-13,9585.22
+leaderboard_rules,Momentum rule (long and short),2026-07-14,9302.94
+leaderboard_rules,Momentum rule (long and short),2026-07-15,9405.61
+leaderboard_rules,Momentum rule (long and short),2026-07-16,9373.14
+leaderboard_rules,Momentum rule (long and short),2026-07-17,9301.87
+leaderboard_rules,Momentum rule (long and short),2026-07-20,9293.26
+leaderboard_rules,Momentum rule (long and short),2026-07-21,9247.33
+leaderboard_rules,Momentum rule (long and short),2026-07-22,9251.43
+leaderboard_rules,Momentum rule (long and short),2026-07-23,9121.62
+leaderboard_rules,Momentum rule (long and short),2026-07-24,9191.69
+leaderboard_rules,Momentum rule (long and short),2026-07-27,9144.95
+leaderboard_rules,Momentum rule (long and short),2026-07-28,9223.03
+leaderboard_rules,Momentum rule (long and short),2026-07-29,9304.67
+leaderboard_rules,Momentum rule (long and short),2026-07-30,9170.25
+leaderboard_rules,Momentum rule (long and short),2026-07-31,9126.63
+leaderboard_rules,Momentum rule (long and short),2026-08-03,9163.57
+leaderboard_rules,Momentum rule (long and short),2026-08-04,9193.58
+leaderboard_rules,Momentum rule (long and short),2026-08-05,9244.11
+leaderboard_rules,Momentum rule (long and short),2026-08-06,9339.3
+leaderboard_rules,Momentum rule (long and short),2026-08-07,9524.23
+leaderboard_rules,Momentum rule (long and short),2026-08-10,9657.68
+leaderboard_rules,Momentum rule (long and short),2026-08-11,9609.83
+leaderboard_rules,Momentum rule (long and short),2026-08-12,9584.81
+leaderboard_rules,Momentum rule (long and short),2026-08-13,9649.13
+leaderboard_rules,Momentum rule (long and short),2026-08-14,9549.49
+leaderboard_rules,Momentum rule (long and short),2026-08-17,9332.03
+leaderboard_rules,Momentum rule (long and short),2026-08-18,9380.65
+leaderboard_rules,Momentum rule (long and short),2026-08-19,9723.32
+leaderboard_rules,Momentum rule (long and short),2026-08-20,9666.16
+leaderboard_rules,Momentum rule (long and short),2026-08-21,9738.78
+leaderboard_rules,Momentum rule (long and short),2026-08-24,9687.34
+leaderboard_rules,Momentum rule (long and short),2026-08-25,9706.03
+leaderboard_rules,Momentum rule (long and short),2026-08-26,9527.62
+leaderboard_rules,Just hold all 50 stocks equally,2026-06-01,10000.0
+leaderboard_rules,Just hold all 50 stocks equally,2026-06-02,10029.68
+leaderboard_rules,Just hold all 50 stocks equally,2026-06-03,9933.21
+leaderboard_rules,Just hold all 50 stocks equally,2026-06-04,10049.26
+leaderboard_rules,Just hold all 50 stocks equally,2026-06-05,9916.2
+leaderboard_rules,Just hold all 50 stocks equally,2026-06-08,9901.98
+leaderboard_rules,Just hold all 50 stocks equally,2026-06-09,9899.92
+leaderboard_rules,Just hold all 50 stocks equally,2026-06-10,9790.62
+leaderboard_rules,Just hold all 50 stocks equally,2026-06-11,9838.3
+leaderboard_rules,Just hold all 50 stocks equally,2026-06-12,9869.87
+leaderboard_rules,Just hold all 50 stocks equally,2026-06-15,9944.98
+leaderboard_rules,Just hold all 50 stocks equally,2026-06-16,9951.6
+leaderboard_rules,Just hold all 50 stocks equally,2026-06-17,9806.63
+leaderboard_rules,Just hold all 50 stocks equally,2026-06-18,9760.84
+leaderboard_rules,Just hold all 50 stocks equally,2026-06-22,9709.66
+leaderboard_rules,Just hold all 50 stocks equally,2026-06-23,9747.65
+leaderboard_rules,Just hold all 50 stocks equally,2026-06-24,9750.42
+leaderboard_rules,Just hold all 50 stocks equally,2026-06-25,9707.65
+leaderboard_rules,Just hold all 50 stocks equally,2026-06-26,9809.73
+leaderboard_rules,Just hold all 50 stocks equally,2026-06-29,9858.36
+leaderboard_rules,Just hold all 50 stocks equally,2026-06-30,9836.29
+leaderboard_rules,Just hold all 50 stocks equally,2026-07-01,9931.28
+leaderboard_rules,Just hold all 50 stocks equally,2026-07-02,10058.01
+leaderboard_rules,Just hold all 50 stocks equally,2026-07-06,10104.04
+leaderboard_rules,Just hold all 50 stocks equally,2026-07-07,10136.41
+leaderboard_rules,Just hold all 50 stocks equally,2026-07-08,10021.03
+leaderboard_rules,Just hold all 50 stocks equally,2026-07-09,10062.72
+leaderboard_rules,Just hold all 50 stocks equally,2026-07-10,10087.42
+leaderboard_rules,Just hold all 50 stocks equally,2026-07-13,10086.06
+leaderboard_rules,Just hold all 50 stocks equally,2026-07-14,9988.73
+leaderboard_rules,Just hold all 50 stocks equally,2026-07-15,10041.82
+leaderboard_rules,Just hold all 50 stocks equally,2026-07-16,10113.61
+leaderboard_rules,Just hold all 50 stocks equally,2026-07-17,10025.58
+leaderboard_rules,Just hold all 50 stocks equally,2026-07-20,9979.64
+leaderboard_rules,Just hold all 50 stocks equally,2026-07-21,10007.85
+leaderboard_rules,Just hold all 50 stocks equally,2026-07-22,9980.94
+leaderboard_rules,Just hold all 50 stocks equally,2026-07-23,9865.56
+leaderboard_rules,Just hold all 50 stocks equally,2026-07-24,9961.0
+leaderboard_rules,Just hold all 50 stocks equally,2026-07-27,10056.57
+leaderboard_rules,Just hold all 50 stocks equally,2026-07-28,10189.62
+leaderboard_rules,Just hold all 50 stocks equally,2026-07-29,10118.15
+leaderboard_rules,Just hold all 50 stocks equally,2026-07-30,10119.81
+leaderboard_rules,Just hold all 50 stocks equally,2026-07-31,10168.44
+leaderboard_rules,Just hold all 50 stocks equally,2026-08-03,10271.04
+leaderboard_rules,Just hold all 50 stocks equally,2026-08-04,10394.87
+leaderboard_rules,Just hold all 50 stocks equally,2026-08-05,10429.42
+leaderboard_rules,Just hold all 50 stocks equally,2026-08-06,10427.1
+leaderboard_rules,Just hold all 50 stocks equally,2026-08-07,10479.48
+leaderboard_rules,Just hold all 50 stocks equally,2026-08-10,10535.67
+leaderboard_rules,Just hold all 50 stocks equally,2026-08-11,10502.43
+leaderboard_rules,Just hold all 50 stocks equally,2026-08-12,10501.62
+leaderboard_rules,Just hold all 50 stocks equally,2026-08-13,10553.64
+leaderboard_rules,Just hold all 50 stocks equally,2026-08-14,10528.89
+leaderboard_rules,Just hold all 50 stocks equally,2026-08-17,10410.37
+leaderboard_rules,Just hold all 50 stocks equally,2026-08-18,10467.59
+leaderboard_rules,Just hold all 50 stocks equally,2026-08-19,10562.08
+leaderboard_rules,Just hold all 50 stocks equally,2026-08-20,10448.8
+leaderboard_rules,Just hold all 50 stocks equally,2026-08-21,10539.2
+leaderboard_rules,Just hold all 50 stocks equally,2026-08-24,10561.49
+leaderboard_rules,Just hold all 50 stocks equally,2026-08-25,10587.58
+leaderboard_rules,Just hold all 50 stocks equally,2026-08-26,10541.81
+leaderboard_rules,S&P 500 (SPY),2026-06-01,10000.0
+leaderboard_rules,S&P 500 (SPY),2026-06-02,10013.58
+leaderboard_rules,S&P 500 (SPY),2026-06-03,9943.31
+leaderboard_rules,S&P 500 (SPY),2026-06-04,9980.88
+leaderboard_rules,S&P 500 (SPY),2026-06-05,9723.28
+leaderboard_rules,S&P 500 (SPY),2026-06-08,9745.3
+leaderboard_rules,S&P 500 (SPY),2026-06-09,9716.69
+leaderboard_rules,S&P 500 (SPY),2026-06-10,9563.5
+leaderboard_rules,S&P 500 (SPY),2026-06-11,9726.05
+leaderboard_rules,S&P 500 (SPY),2026-06-12,9778.65
+leaderboard_rules,S&P 500 (SPY),2026-06-15,9951.09
+leaderboard_rules,S&P 500 (SPY),2026-06-16,9891.77
+leaderboard_rules,S&P 500 (SPY),2026-06-17,9768.24
+leaderboard_rules,S&P 500 (SPY),2026-06-18,9869.8
+leaderboard_rules,S&P 500 (SPY),2026-06-22,9838.74
+leaderboard_rules,S&P 500 (SPY),2026-06-23,9695.86
+leaderboard_rules,S&P 500 (SPY),2026-06-24,9691.37
+leaderboard_rules,S&P 500 (SPY),2026-06-25,9705.38
+leaderboard_rules,S&P 500 (SPY),2026-06-26,9635.19
+leaderboard_rules,S&P 500 (SPY),2026-06-29,9793.93
+leaderboard_rules,S&P 500 (SPY),2026-06-30,9870.2
+leaderboard_rules,S&P 500 (SPY),2026-07-01,9856.85
+leaderboard_rules,S&P 500 (SPY),2026-07-02,9843.89
+leaderboard_rules,S&P 500 (SPY),2026-07-06,9929.81
+leaderboard_rules,S&P 500 (SPY),2026-07-07,9882.62
+leaderboard_rules,S&P 500 (SPY),2026-07-08,9852.09
+leaderboard_rules,S&P 500 (SPY),2026-07-09,9935.49
+leaderboard_rules,S&P 500 (SPY),2026-07-10,9978.31
+leaderboard_rules,S&P 500 (SPY),2026-07-13,9901.92
+leaderboard_rules,S&P 500 (SPY),2026-07-14,9937.08
+leaderboard_rules,S&P 500 (SPY),2026-07-15,9976.46
+leaderboard_rules,S&P 500 (SPY),2026-07-16,9922.4
+leaderboard_rules,S&P 500 (SPY),2026-07-17,9824.2
+leaderboard_rules,S&P 500 (SPY),2026-07-20,9808.34
+leaderboard_rules,S&P 500 (SPY),2026-07-21,9890.15
+leaderboard_rules,S&P 500 (SPY),2026-07-22,9878.66
+leaderboard_rules,S&P 500 (SPY),2026-07-23,9756.66
+leaderboard_rules,S&P 500 (SPY),2026-07-24,9766.57
+leaderboard_rules,S&P 500 (SPY),2026-07-27,9768.69
+leaderboard_rules,S&P 500 (SPY),2026-07-28,9792.08
+leaderboard_rules,S&P 500 (SPY),2026-07-29,9641.41
+leaderboard_rules,S&P 500 (SPY),2026-07-30,9803.05
+leaderboard_rules,S&P 500 (SPY),2026-07-31,9873.63
+leaderboard_rules,S&P 500 (SPY),2026-08-03,10014.26
+leaderboard_rules,S&P 500 (SPY),2026-08-04,10194.81
+leaderboard_rules,S&P 500 (SPY),2026-08-05,10174.46
+leaderboard_rules,S&P 500 (SPY),2026-08-06,10158.2
+leaderboard_rules,S&P 500 (SPY),2026-08-07,10220.32
+leaderboard_rules,S&P 500 (SPY),2026-08-10,10217.28
+leaderboard_rules,S&P 500 (SPY),2026-08-11,10184.63
+leaderboard_rules,S&P 500 (SPY),2026-08-12,10210.14
+leaderboard_rules,S&P 500 (SPY),2026-08-13,10281.38
+leaderboard_rules,S&P 500 (SPY),2026-08-14,10261.03
+leaderboard_rules,S&P 500 (SPY),2026-08-17,10212.52
+leaderboard_rules,S&P 500 (SPY),2026-08-18,10143.53
+leaderboard_rules,S&P 500 (SPY),2026-08-19,10164.81
+leaderboard_rules,S&P 500 (SPY),2026-08-20,10079.42
+leaderboard_rules,S&P 500 (SPY),2026-08-21,10120.66
+leaderboard_rules,S&P 500 (SPY),2026-08-24,10090.92
+leaderboard_rules,S&P 500 (SPY),2026-08-25,10123.17
+leaderboard_rules,S&P 500 (SPY),2026-08-26,10125.42
+position_limit,Prompt 1 — leaderboard mandate,2026-06-01,10000.0
+position_limit,Prompt 1 — leaderboard mandate,2026-06-02,9979.83
+position_limit,Prompt 1 — leaderboard mandate,2026-06-03,9952.93
+position_limit,Prompt 1 — leaderboard mandate,2026-06-04,9959.09
+position_limit,Prompt 1 — leaderboard mandate,2026-06-05,9938.3
+position_limit,Prompt 1 — leaderboard mandate,2026-06-08,9924.8
+position_limit,Prompt 1 — leaderboard mandate,2026-06-09,9870.14
+position_limit,Prompt 1 — leaderboard mandate,2026-06-10,9862.27
+position_limit,Prompt 1 — leaderboard mandate,2026-06-11,9849.67
+position_limit,Prompt 1 — leaderboard mandate,2026-06-12,9827.57
+position_limit,Prompt 1 — leaderboard mandate,2026-06-15,9802.56
+position_limit,Prompt 1 — leaderboard mandate,2026-06-16,9790.5
+position_limit,Prompt 1 — leaderboard mandate,2026-06-17,9765.45
+position_limit,Prompt 1 — leaderboard mandate,2026-06-18,9784.77
+position_limit,Prompt 1 — leaderboard mandate,2026-06-22,9841.76
+position_limit,Prompt 1 — leaderboard mandate,2026-06-23,9698.81
+position_limit,Prompt 1 — leaderboard mandate,2026-06-24,9698.32
+position_limit,Prompt 1 — leaderboard mandate,2026-06-25,9756.03
+position_limit,Prompt 1 — leaderboard mandate,2026-06-26,9706.6
+position_limit,Prompt 1 — leaderboard mandate,2026-06-29,9607.28
+position_limit,Prompt 1 — leaderboard mandate,2026-06-30,9613.37
+position_limit,Prompt 1 — leaderboard mandate,2026-07-01,9584.43
+position_limit,Prompt 1 — leaderboard mandate,2026-07-02,9625.71
+position_limit,Prompt 1 — leaderboard mandate,2026-07-06,9710.48
+position_limit,Prompt 1 — leaderboard mandate,2026-07-07,9765.6
+position_limit,Prompt 1 — leaderboard mandate,2026-07-08,9731.57
+position_limit,Prompt 1 — leaderboard mandate,2026-07-09,9675.29
+position_limit,Prompt 1 — leaderboard mandate,2026-07-10,9610.75
+position_limit,Prompt 1 — leaderboard mandate,2026-07-13,9633.01
+position_limit,Prompt 1 — leaderboard mandate,2026-07-14,9098.62
+position_limit,Prompt 1 — leaderboard mandate,2026-07-15,9162.63
+position_limit,Prompt 1 — leaderboard mandate,2026-07-16,9078.96
+position_limit,Prompt 1 — leaderboard mandate,2026-07-17,9034.19
+position_limit,Prompt 1 — leaderboard mandate,2026-07-20,9027.46
+position_limit,Prompt 1 — leaderboard mandate,2026-07-21,9005.2
+position_limit,Prompt 1 — leaderboard mandate,2026-07-22,8994.52
+position_limit,Prompt 1 — leaderboard mandate,2026-07-23,8994.52
+position_limit,Prompt 1 — leaderboard mandate,2026-07-24,8961.51
+position_limit,Prompt 1 — leaderboard mandate,2026-07-27,8955.21
+position_limit,Prompt 1 — leaderboard mandate,2026-07-28,8974.51
+position_limit,Prompt 1 — leaderboard mandate,2026-07-29,8958.48
+position_limit,Prompt 1 — leaderboard mandate,2026-07-30,9304.05
+position_limit,Prompt 1 — leaderboard mandate,2026-07-31,9381.77
+position_limit,Prompt 1 — leaderboard mandate,2026-08-03,9512.61
+position_limit,Prompt 1 — leaderboard mandate,2026-08-04,9542.06
+position_limit,Prompt 1 — leaderboard mandate,2026-08-05,9511.53
+position_limit,Prompt 1 — leaderboard mandate,2026-08-06,9582.29
+position_limit,Prompt 1 — leaderboard mandate,2026-08-07,9583.03
+position_limit,Prompt 1 — leaderboard mandate,2026-08-10,9617.66
+position_limit,Prompt 1 — leaderboard mandate,2026-08-11,9604.83
+position_limit,Prompt 1 — leaderboard mandate,2026-08-12,9539.89
+position_limit,Prompt 1 — leaderboard mandate,2026-08-13,9565.28
+position_limit,Prompt 1 — leaderboard mandate,2026-08-14,9556.84
+position_limit,Prompt 1 — leaderboard mandate,2026-08-17,9470.96
+position_limit,Prompt 1 — leaderboard mandate,2026-08-18,9478.26
+position_limit,Prompt 1 — leaderboard mandate,2026-08-19,9493.55
+position_limit,Prompt 1 — leaderboard mandate,2026-08-20,9480.69
+position_limit,Prompt 1 — leaderboard mandate,2026-08-21,9492.64
+position_limit,Prompt 1 — leaderboard mandate,2026-08-24,9515.91
+position_limit,Prompt 1 — leaderboard mandate,2026-08-25,9541.06
+position_limit,Prompt 1 — leaderboard mandate,2026-08-26,9564.87
+position_limit,Prompt 2 — plus risk rules,2026-06-01,10000.0
+position_limit,Prompt 2 — plus risk rules,2026-06-02,10012.66
+position_limit,Prompt 2 — plus risk rules,2026-06-03,9958.28
+position_limit,Prompt 2 — plus risk rules,2026-06-04,9958.28
+position_limit,Prompt 2 — plus risk rules,2026-06-05,9936.16
+position_limit,Prompt 2 — plus risk rules,2026-06-08,9967.05
+position_limit,Prompt 2 — plus risk rules,2026-06-09,9959.27
+position_limit,Prompt 2 — plus risk rules,2026-06-10,9944.78
+position_limit,Prompt 2 — plus risk rules,2026-06-11,9987.62
+position_limit,Prompt 2 — plus risk rules,2026-06-12,9925.57
+position_limit,Prompt 2 — plus risk rules,2026-06-15,9917.74
+position_limit,Prompt 2 — plus risk rules,2026-06-16,9903.05
+position_limit,Prompt 2 — plus risk rules,2026-06-17,9880.53
+position_limit,Prompt 2 — plus risk rules,2026-06-18,9851.73
+position_limit,Prompt 2 — plus risk rules,2026-06-22,9859.26
+position_limit,Prompt 2 — plus risk rules,2026-06-23,9812.9
+position_limit,Prompt 2 — plus risk rules,2026-06-24,9812.9
+position_limit,Prompt 2 — plus risk rules,2026-06-25,9768.56
+position_limit,Prompt 2 — plus risk rules,2026-06-26,9768.33
+position_limit,Prompt 2 — plus risk rules,2026-06-29,9815.75
+position_limit,Prompt 2 — plus risk rules,2026-06-30,9802.22
+position_limit,Prompt 2 — plus risk rules,2026-07-01,9836.88
+position_limit,Prompt 2 — plus risk rules,2026-07-02,9846.89
+position_limit,Prompt 2 — plus risk rules,2026-07-06,9862.25
+position_limit,Prompt 2 — plus risk rules,2026-07-07,9881.03
+position_limit,Prompt 2 — plus risk rules,2026-07-08,9856.68
+position_limit,Prompt 2 — plus risk rules,2026-07-09,9891.96
+position_limit,Prompt 2 — plus risk rules,2026-07-10,9874.43
+position_limit,Prompt 2 — plus risk rules,2026-07-13,9894.74
+position_limit,Prompt 2 — plus risk rules,2026-07-14,9896.6
+position_limit,Prompt 2 — plus risk rules,2026-07-15,9973.65
+position_limit,Prompt 2 — plus risk rules,2026-07-16,9921.36
+position_limit,Prompt 2 — plus risk rules,2026-07-17,9893.92
+position_limit,Prompt 2 — plus risk rules,2026-07-20,9922.39
+position_limit,Prompt 2 — plus risk rules,2026-07-21,9897.22
+position_limit,Prompt 2 — plus risk rules,2026-07-22,9869.37
+position_limit,Prompt 2 — plus risk rules,2026-07-23,9753.95
+position_limit,Prompt 2 — plus risk rules,2026-07-24,9737.97
+position_limit,Prompt 2 — plus risk rules,2026-07-27,9730.54
+position_limit,Prompt 2 — plus risk rules,2026-07-28,9725.07
+position_limit,Prompt 2 — plus risk rules,2026-07-29,9681.65
+position_limit,Prompt 2 — plus risk rules,2026-07-30,9772.93
+position_limit,Prompt 2 — plus risk rules,2026-07-31,10145.07
+position_limit,Prompt 2 — plus risk rules,2026-08-03,10273.39
+position_limit,Prompt 2 — plus risk rules,2026-08-04,10205.31
+position_limit,Prompt 2 — plus risk rules,2026-08-05,10156.11
+position_limit,Prompt 2 — plus risk rules,2026-08-06,10152.09
+position_limit,Prompt 2 — plus risk rules,2026-08-07,10174.99
+position_limit,Prompt 2 — plus risk rules,2026-08-10,10212.22
+position_limit,Prompt 2 — plus risk rules,2026-08-11,10152.19
+position_limit,Prompt 2 — plus risk rules,2026-08-12,10100.72
+position_limit,Prompt 2 — plus risk rules,2026-08-13,10078.55
+position_limit,Prompt 2 — plus risk rules,2026-08-14,10052.97
+position_limit,Prompt 2 — plus risk rules,2026-08-17,10039.15
+position_limit,Prompt 2 — plus risk rules,2026-08-18,10019.96
+position_limit,Prompt 2 — plus risk rules,2026-08-19,10085.87
+position_limit,Prompt 2 — plus risk rules,2026-08-20,10026.77
+position_limit,Prompt 2 — plus risk rules,2026-08-21,10011.5
+position_limit,Prompt 2 — plus risk rules,2026-08-24,10046.99
+position_limit,Prompt 2 — plus risk rules,2026-08-25,10036.57
+position_limit,Prompt 2 — plus risk rules,2026-08-26,10025.84
+position_limit,Prompt 3 — full decision procedure,2026-06-01,10000.0
+position_limit,Prompt 3 — full decision procedure,2026-06-02,10048.35
+position_limit,Prompt 3 — full decision procedure,2026-06-03,10016.21
+position_limit,Prompt 3 — full decision procedure,2026-06-04,10022.52
+position_limit,Prompt 3 — full decision procedure,2026-06-05,9997.22
+position_limit,Prompt 3 — full decision procedure,2026-06-08,9959.49
+position_limit,Prompt 3 — full decision procedure,2026-06-09,9917.01
+position_limit,Prompt 3 — full decision procedure,2026-06-10,9869.35
+position_limit,Prompt 3 — full decision procedure,2026-06-11,9897.93
+position_limit,Prompt 3 — full decision procedure,2026-06-12,9843.01
+position_limit,Prompt 3 — full decision procedure,2026-06-15,9843.01
+position_limit,Prompt 3 — full decision procedure,2026-06-16,9809.46
+position_limit,Prompt 3 — full decision procedure,2026-06-17,9809.46
+position_limit,Prompt 3 — full decision procedure,2026-06-18,9809.46
+position_limit,Prompt 3 — full decision procedure,2026-06-22,9809.46
+position_limit,Prompt 3 — full decision procedure,2026-06-23,9809.46
+position_limit,Prompt 3 — full decision procedure,2026-06-24,9809.46
+position_limit,Prompt 3 — full decision procedure,2026-06-25,9809.46
+position_limit,Prompt 3 — full decision procedure,2026-06-26,9809.46
+position_limit,Prompt 3 — full decision procedure,2026-06-29,9795.14
+position_limit,Prompt 3 — full decision procedure,2026-06-30,9795.14
+position_limit,Prompt 3 — full decision procedure,2026-07-01,9795.14
+position_limit,Prompt 3 — full decision procedure,2026-07-02,9889.82
+position_limit,Prompt 3 — full decision procedure,2026-07-06,9916.67
+position_limit,Prompt 3 — full decision procedure,2026-07-07,9903.35
+position_limit,Prompt 3 — full decision procedure,2026-07-08,9921.53
+position_limit,Prompt 3 — full decision procedure,2026-07-09,9940.38
+position_limit,Prompt 3 — full decision procedure,2026-07-10,9934.38
+position_limit,Prompt 3 — full decision procedure,2026-07-13,9947.64
+position_limit,Prompt 3 — full decision procedure,2026-07-14,9931.32
+position_limit,Prompt 3 — full decision procedure,2026-07-15,10015.51
+position_limit,Prompt 3 — full decision procedure,2026-07-16,10053.88
+position_limit,Prompt 3 — full decision procedure,2026-07-17,10057.07
+position_limit,Prompt 3 — full decision procedure,2026-07-20,10009.45
+position_limit,Prompt 3 — full decision procedure,2026-07-21,10017.11
+position_limit,Prompt 3 — full decision procedure,2026-07-22,10004.79
+position_limit,Prompt 3 — full decision procedure,2026-07-23,9976.61
+position_limit,Prompt 3 — full decision procedure,2026-07-24,10052.28
+position_limit,Prompt 3 — full decision procedure,2026-07-27,10078.19
+position_limit,Prompt 3 — full decision procedure,2026-07-28,10099.3
+position_limit,Prompt 3 — full decision procedure,2026-07-29,10086.71
+position_limit,Prompt 3 — full decision procedure,2026-07-30,10055.01
+position_limit,Prompt 3 — full decision procedure,2026-07-31,9891.69
+position_limit,Prompt 3 — full decision procedure,2026-08-03,9855.12
+position_limit,Prompt 3 — full decision procedure,2026-08-04,9894.82
+position_limit,Prompt 3 — full decision procedure,2026-08-05,9905.61
+position_limit,Prompt 3 — full decision procedure,2026-08-06,9915.0
+position_limit,Prompt 3 — full decision procedure,2026-08-07,9921.13
+position_limit,Prompt 3 — full decision procedure,2026-08-10,9889.13
+position_limit,Prompt 3 — full decision procedure,2026-08-11,9866.8
+position_limit,Prompt 3 — full decision procedure,2026-08-12,9849.07
+position_limit,Prompt 3 — full decision procedure,2026-08-13,9869.13
+position_limit,Prompt 3 — full decision procedure,2026-08-14,9873.6
+position_limit,Prompt 3 — full decision procedure,2026-08-17,9871.33
+position_limit,Prompt 3 — full decision procedure,2026-08-18,9900.93
+position_limit,Prompt 3 — full decision procedure,2026-08-19,9946.26
+position_limit,Prompt 3 — full decision procedure,2026-08-20,9909.4
+position_limit,Prompt 3 — full decision procedure,2026-08-21,9896.4
+position_limit,Prompt 3 — full decision procedure,2026-08-24,9903.0
+position_limit,Prompt 3 — full decision procedure,2026-08-25,9900.06
+position_limit,Prompt 3 — full decision procedure,2026-08-26,9921.64
+position_limit,Momentum rule (long only),2026-06-01,10000.0
+position_limit,Momentum rule (long only),2026-06-02,10048.34
+position_limit,Momentum rule (long only),2026-06-03,9929.7
+position_limit,Momentum rule (long only),2026-06-04,9909.54
+position_limit,Momentum rule (long only),2026-06-05,9784.95
+position_limit,Momentum rule (long only),2026-06-08,9805.87
+position_limit,Momentum rule (long only),2026-06-09,9697.16
+position_limit,Momentum rule (long only),2026-06-10,9659.0
+position_limit,Momentum rule (long only),2026-06-11,9652.38
+position_limit,Momentum rule (long only),2026-06-12,9673.53
+position_limit,Momentum rule (long only),2026-06-15,9671.58
+position_limit,Momentum rule (long only),2026-06-16,9704.54
+position_limit,Momentum rule (long only),2026-06-17,9688.63
+position_limit,Momentum rule (long only),2026-06-18,9675.47
+position_limit,Momentum rule (long only),2026-06-22,9748.43
+position_limit,Momentum rule (long only),2026-06-23,9719.91
+position_limit,Momentum rule (long only),2026-06-24,9814.45
+position_limit,Momentum rule (long only),2026-06-25,9895.36
+position_limit,Momentum rule (long only),2026-06-26,9826.09
+position_limit,Momentum rule (long only),2026-06-29,9922.54
+position_limit,Momentum rule (long only),2026-06-30,9973.31
+position_limit,Momentum rule (long only),2026-07-01,9888.79
+position_limit,Momentum rule (long only),2026-07-02,9942.54
+position_limit,Momentum rule (long only),2026-07-06,9981.06
+position_limit,Momentum rule (long only),2026-07-07,9845.87
+position_limit,Momentum rule (long only),2026-07-08,9607.8
+position_limit,Momentum rule (long only),2026-07-09,9593.79
+position_limit,Momentum rule (long only),2026-07-10,9526.4
+position_limit,Momentum rule (long only),2026-07-13,9585.22
+position_limit,Momentum rule (long only),2026-07-14,9302.94
+position_limit,Momentum rule (long only),2026-07-15,9405.61
+position_limit,Momentum rule (long only),2026-07-16,9373.14
+position_limit,Momentum rule (long only),2026-07-17,9301.87
+position_limit,Momentum rule (long only),2026-07-20,9293.26
+position_limit,Momentum rule (long only),2026-07-21,9247.33
+position_limit,Momentum rule (long only),2026-07-22,9251.43
+position_limit,Momentum rule (long only),2026-07-23,9121.62
+position_limit,Momentum rule (long only),2026-07-24,9191.69
+position_limit,Momentum rule (long only),2026-07-27,9144.95
+position_limit,Momentum rule (long only),2026-07-28,9223.03
+position_limit,Momentum rule (long only),2026-07-29,9304.67
+position_limit,Momentum rule (long only),2026-07-30,9170.25
+position_limit,Momentum rule (long only),2026-07-31,9126.63
+position_limit,Momentum rule (long only),2026-08-03,9163.57
+position_limit,Momentum rule (long only),2026-08-04,9193.58
+position_limit,Momentum rule (long only),2026-08-05,9244.11
+position_limit,Momentum rule (long only),2026-08-06,9339.3
+position_limit,Momentum rule (long only),2026-08-07,9524.23
+position_limit,Momentum rule (long only),2026-08-10,9657.68
+position_limit,Momentum rule (long only),2026-08-11,9609.83
+position_limit,Momentum rule (long only),2026-08-12,9584.81
+position_limit,Momentum rule (long only),2026-08-13,9649.13
+position_limit,Momentum rule (long only),2026-08-14,9549.49
+position_limit,Momentum rule (long only),2026-08-17,9332.03
+position_limit,Momentum rule (long only),2026-08-18,9380.65
+position_limit,Momentum rule (long only),2026-08-19,9723.32
+position_limit,Momentum rule (long only),2026-08-20,9666.16
+position_limit,Momentum rule (long only),2026-08-21,9738.78
+position_limit,Momentum rule (long only),2026-08-24,9687.34
+position_limit,Momentum rule (long only),2026-08-25,9706.03
+position_limit,Momentum rule (long only),2026-08-26,9527.62
+position_limit,Momentum rule (long and short),2026-06-01,10000.0
+position_limit,Momentum rule (long and short),2026-06-02,10048.34
+position_limit,Momentum rule (long and short),2026-06-03,9929.7
+position_limit,Momentum rule (long and short),2026-06-04,9909.54
+position_limit,Momentum rule (long and short),2026-06-05,9784.95
+position_limit,Momentum rule (long and short),2026-06-08,9805.87
+position_limit,Momentum rule (long and short),2026-06-09,9697.16
+position_limit,Momentum rule (long and short),2026-06-10,9659.0
+position_limit,Momentum rule (long and short),2026-06-11,9627.1
+position_limit,Momentum rule (long and short),2026-06-12,9621.51
+position_limit,Momentum rule (long and short),2026-06-15,9575.81
+position_limit,Momentum rule (long and short),2026-06-16,9585.08
+position_limit,Momentum rule (long and short),2026-06-17,9737.09
+position_limit,Momentum rule (long and short),2026-06-18,9720.29
+position_limit,Momentum rule (long and short),2026-06-22,9844.71
+position_limit,Momentum rule (long and short),2026-06-23,9808.47
+position_limit,Momentum rule (long and short),2026-06-24,9869.09
+position_limit,Momentum rule (long and short),2026-06-25,10042.39
+position_limit,Momentum rule (long and short),2026-06-26,9757.93
+position_limit,Momentum rule (long and short),2026-06-29,9787.5
+position_limit,Momentum rule (long and short),2026-06-30,9871.09
+position_limit,Momentum rule (long and short),2026-07-01,9631.74
+position_limit,Momentum rule (long and short),2026-07-02,9581.62
+position_limit,Momentum rule (long and short),2026-07-06,9514.86
+position_limit,Momentum rule (long and short),2026-07-07,9506.01
+position_limit,Momentum rule (long and short),2026-07-08,9385.92
+position_limit,Momentum rule (long and short),2026-07-09,9359.81
+position_limit,Momentum rule (long and short),2026-07-10,9289.43
+position_limit,Momentum rule (long and short),2026-07-13,9391.7
+position_limit,Momentum rule (long and short),2026-07-14,9133.26
+position_limit,Momentum rule (long and short),2026-07-15,9243.64
+position_limit,Momentum rule (long and short),2026-07-16,9262.7
+position_limit,Momentum rule (long and short),2026-07-17,9209.86
+position_limit,Momentum rule (long and short),2026-07-20,9221.44
+position_limit,Momentum rule (long and short),2026-07-21,9100.75
+position_limit,Momentum rule (long and short),2026-07-22,9071.5
+position_limit,Momentum rule (long and short),2026-07-23,9218.59
+position_limit,Momentum rule (long and short),2026-07-24,9213.94
+position_limit,Momentum rule (long and short),2026-07-27,9144.31
+position_limit,Momentum rule (long and short),2026-07-28,9137.1
+position_limit,Momentum rule (long and short),2026-07-29,9305.0
+position_limit,Momentum rule (long and short),2026-07-30,9117.26
+position_limit,Momentum rule (long and short),2026-07-31,9045.77
+position_limit,Momentum rule (long and short),2026-08-03,8967.98
+position_limit,Momentum rule (long and short),2026-08-04,8917.9
+position_limit,Momentum rule (long and short),2026-08-05,8917.46
+position_limit,Momentum rule (long and short),2026-08-06,9024.22
+position_limit,Momentum rule (long and short),2026-08-07,9179.41
+position_limit,Momentum rule (long and short),2026-08-10,9312.47
+position_limit,Momentum rule (long and short),2026-08-11,9243.24
+position_limit,Momentum rule (long and short),2026-08-12,9211.3
+position_limit,Momentum rule (long and short),2026-08-13,9245.45
+position_limit,Momentum rule (long and short),2026-08-14,9123.81
+position_limit,Momentum rule (long and short),2026-08-17,8911.67
+position_limit,Momentum rule (long and short),2026-08-18,8963.54
+position_limit,Momentum rule (long and short),2026-08-19,9213.32
+position_limit,Momentum rule (long and short),2026-08-20,9221.63
+position_limit,Momentum rule (long and short),2026-08-21,9312.93
+position_limit,Momentum rule (long and short),2026-08-24,9322.78
+position_limit,Momentum rule (long and short),2026-08-25,9333.02
+position_limit,Momentum rule (long and short),2026-08-26,9181.66
+position_limit,Just hold all 50 stocks equally,2026-06-01,10000.0
+position_limit,Just hold all 50 stocks equally,2026-06-02,10029.68
+position_limit,Just hold all 50 stocks equally,2026-06-03,9933.21
+position_limit,Just hold all 50 stocks equally,2026-06-04,10049.26
+position_limit,Just hold all 50 stocks equally,2026-06-05,9916.2
+position_limit,Just hold all 50 stocks equally,2026-06-08,9901.98
+position_limit,Just hold all 50 stocks equally,2026-06-09,9899.92
+position_limit,Just hold all 50 stocks equally,2026-06-10,9790.62
+position_limit,Just hold all 50 stocks equally,2026-06-11,9838.3
+position_limit,Just hold all 50 stocks equally,2026-06-12,9869.87
+position_limit,Just hold all 50 stocks equally,2026-06-15,9944.98
+position_limit,Just hold all 50 stocks equally,2026-06-16,9951.6
+position_limit,Just hold all 50 stocks equally,2026-06-17,9806.63
+position_limit,Just hold all 50 stocks equally,2026-06-18,9760.84
+position_limit,Just hold all 50 stocks equally,2026-06-22,9709.66
+position_limit,Just hold all 50 stocks equally,2026-06-23,9747.65
+position_limit,Just hold all 50 stocks equally,2026-06-24,9750.42
+position_limit,Just hold all 50 stocks equally,2026-06-25,9707.65
+position_limit,Just hold all 50 stocks equally,2026-06-26,9809.73
+position_limit,Just hold all 50 stocks equally,2026-06-29,9858.36
+position_limit,Just hold all 50 stocks equally,2026-06-30,9836.29
+position_limit,Just hold all 50 stocks equally,2026-07-01,9931.28
+position_limit,Just hold all 50 stocks equally,2026-07-02,10058.01
+position_limit,Just hold all 50 stocks equally,2026-07-06,10104.04
+position_limit,Just hold all 50 stocks equally,2026-07-07,10136.41
+position_limit,Just hold all 50 stocks equally,2026-07-08,10021.03
+position_limit,Just hold all 50 stocks equally,2026-07-09,10062.72
+position_limit,Just hold all 50 stocks equally,2026-07-10,10087.42
+position_limit,Just hold all 50 stocks equally,2026-07-13,10086.06
+position_limit,Just hold all 50 stocks equally,2026-07-14,9988.73
+position_limit,Just hold all 50 stocks equally,2026-07-15,10041.82
+position_limit,Just hold all 50 stocks equally,2026-07-16,10113.61
+position_limit,Just hold all 50 stocks equally,2026-07-17,10025.58
+position_limit,Just hold all 50 stocks equally,2026-07-20,9979.64
+position_limit,Just hold all 50 stocks equally,2026-07-21,10007.85
+position_limit,Just hold all 50 stocks equally,2026-07-22,9980.94
+position_limit,Just hold all 50 stocks equally,2026-07-23,9865.56
+position_limit,Just hold all 50 stocks equally,2026-07-24,9961.0
+position_limit,Just hold all 50 stocks equally,2026-07-27,10056.57
+position_limit,Just hold all 50 stocks equally,2026-07-28,10189.62
+position_limit,Just hold all 50 stocks equally,2026-07-29,10118.15
+position_limit,Just hold all 50 stocks equally,2026-07-30,10119.81
+position_limit,Just hold all 50 stocks equally,2026-07-31,10168.44
+position_limit,Just hold all 50 stocks equally,2026-08-03,10271.04
+position_limit,Just hold all 50 stocks equally,2026-08-04,10394.87
+position_limit,Just hold all 50 stocks equally,2026-08-05,10429.42
+position_limit,Just hold all 50 stocks equally,2026-08-06,10427.1
+position_limit,Just hold all 50 stocks equally,2026-08-07,10479.48
+position_limit,Just hold all 50 stocks equally,2026-08-10,10535.67
+position_limit,Just hold all 50 stocks equally,2026-08-11,10502.43
+position_limit,Just hold all 50 stocks equally,2026-08-12,10501.62
+position_limit,Just hold all 50 stocks equally,2026-08-13,10553.64
+position_limit,Just hold all 50 stocks equally,2026-08-14,10528.89
+position_limit,Just hold all 50 stocks equally,2026-08-17,10410.37
+position_limit,Just hold all 50 stocks equally,2026-08-18,10467.59
+position_limit,Just hold all 50 stocks equally,2026-08-19,10562.08
+position_limit,Just hold all 50 stocks equally,2026-08-20,10448.8
+position_limit,Just hold all 50 stocks equally,2026-08-21,10539.2
+position_limit,Just hold all 50 stocks equally,2026-08-24,10561.49
+position_limit,Just hold all 50 stocks equally,2026-08-25,10587.58
+position_limit,Just hold all 50 stocks equally,2026-08-26,10541.81
+position_limit,S&P 500 (SPY),2026-06-01,10000.0
+position_limit,S&P 500 (SPY),2026-06-02,10013.58
+position_limit,S&P 500 (SPY),2026-06-03,9943.31
+position_limit,S&P 500 (SPY),2026-06-04,9980.88
+position_limit,S&P 500 (SPY),2026-06-05,9723.28
+position_limit,S&P 500 (SPY),2026-06-08,9745.3
+position_limit,S&P 500 (SPY),2026-06-09,9716.69
+position_limit,S&P 500 (SPY),2026-06-10,9563.5
+position_limit,S&P 500 (SPY),2026-06-11,9726.05
+position_limit,S&P 500 (SPY),2026-06-12,9778.65
+position_limit,S&P 500 (SPY),2026-06-15,9951.09
+position_limit,S&P 500 (SPY),2026-06-16,9891.77
+position_limit,S&P 500 (SPY),2026-06-17,9768.24
+position_limit,S&P 500 (SPY),2026-06-18,9869.8
+position_limit,S&P 500 (SPY),2026-06-22,9838.74
+position_limit,S&P 500 (SPY),2026-06-23,9695.86
+position_limit,S&P 500 (SPY),2026-06-24,9691.37
+position_limit,S&P 500 (SPY),2026-06-25,9705.38
+position_limit,S&P 500 (SPY),2026-06-26,9635.19
+position_limit,S&P 500 (SPY),2026-06-29,9793.93
+position_limit,S&P 500 (SPY),2026-06-30,9870.2
+position_limit,S&P 500 (SPY),2026-07-01,9856.85
+position_limit,S&P 500 (SPY),2026-07-02,9843.89
+position_limit,S&P 500 (SPY),2026-07-06,9929.81
+position_limit,S&P 500 (SPY),2026-07-07,9882.62
+position_limit,S&P 500 (SPY),2026-07-08,9852.09
+position_limit,S&P 500 (SPY),2026-07-09,9935.49
+position_limit,S&P 500 (SPY),2026-07-10,9978.31
+position_limit,S&P 500 (SPY),2026-07-13,9901.92
+position_limit,S&P 500 (SPY),2026-07-14,9937.08
+position_limit,S&P 500 (SPY),2026-07-15,9976.46
+position_limit,S&P 500 (SPY),2026-07-16,9922.4
+position_limit,S&P 500 (SPY),2026-07-17,9824.2
+position_limit,S&P 500 (SPY),2026-07-20,9808.34
+position_limit,S&P 500 (SPY),2026-07-21,9890.15
+position_limit,S&P 500 (SPY),2026-07-22,9878.66
+position_limit,S&P 500 (SPY),2026-07-23,9756.66
+position_limit,S&P 500 (SPY),2026-07-24,9766.57
+position_limit,S&P 500 (SPY),2026-07-27,9768.69
+position_limit,S&P 500 (SPY),2026-07-28,9792.08
+position_limit,S&P 500 (SPY),2026-07-29,9641.41
+position_limit,S&P 500 (SPY),2026-07-30,9803.05
+position_limit,S&P 500 (SPY),2026-07-31,9873.63
+position_limit,S&P 500 (SPY),2026-08-03,10014.26
+position_limit,S&P 500 (SPY),2026-08-04,10194.81
+position_limit,S&P 500 (SPY),2026-08-05,10174.46
+position_limit,S&P 500 (SPY),2026-08-06,10158.2
+position_limit,S&P 500 (SPY),2026-08-07,10220.32
+position_limit,S&P 500 (SPY),2026-08-10,10217.28
+position_limit,S&P 500 (SPY),2026-08-11,10184.63
+position_limit,S&P 500 (SPY),2026-08-12,10210.14
+position_limit,S&P 500 (SPY),2026-08-13,10281.38
+position_limit,S&P 500 (SPY),2026-08-14,10261.03
+position_limit,S&P 500 (SPY),2026-08-17,10212.52
+position_limit,S&P 500 (SPY),2026-08-18,10143.53
+position_limit,S&P 500 (SPY),2026-08-19,10164.81
+position_limit,S&P 500 (SPY),2026-08-20,10079.42
+position_limit,S&P 500 (SPY),2026-08-21,10120.66
+position_limit,S&P 500 (SPY),2026-08-24,10090.92
+position_limit,S&P 500 (SPY),2026-08-25,10123.17
+position_limit,S&P 500 (SPY),2026-08-26,10125.42

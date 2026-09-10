@@ -1,0 +1,23 @@
+# data, caches and results are regenerated, never committed — except data/summary/,
+# the few small tables notebook 04 tells its story from
+data/*
+!data/.gitkeep
+!data/summary/
+!data/summary/*
+
+# python
+__pycache__/
+*.egg-info/
+.pytest_cache/
+.env
+
+# jupyter
+.ipynb_checkpoints/
+
+# os
+.DS_Store
+
+# secrets and local config
+*.key
+*.pem
+.env.*
