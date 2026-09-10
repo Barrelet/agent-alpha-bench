@@ -7,6 +7,16 @@ money but whether the judgement was any good (calibration, ablations, controls).
 
 See `BLUEPRINT.md` for the design and roadmap. MIT licensed; a research harness, not investment advice.
 
+## Disclaimer
+
+This is a research tool, not investment advice. Every result in this repository comes from a
+paper-trading simulation over a short historical window, with simplified rules and costs;
+none of it is a live track record, and past simulated performance says nothing about future
+returns. Nothing here is a recommendation to buy, sell or hold any security, and no decision
+should be based on the output of this code. Price data is fetched by the user from Yahoo Finance
+under Yahoo's terms and is not distributed with this repository. The software is provided as is,
+without warranty of any kind (see `LICENSE`).
+
 ## Quick start
 
 ```bash
