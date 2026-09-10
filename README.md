@@ -53,10 +53,12 @@ Ollama tips for this workload (prompts are ~9k tokens of numbers; prompt *readin
 ## Layout
 
 ```
-alphabench/            package: universe, market, screener, prompt, schema, engine, agents/ (rules + llm), metrics, null, compare, replay
+alphabench/     package: universe, market, screener, prompt, schema, engine, agents/ (rules + llm), metrics, null, compare, replay,
+                forecast (cross-sectional forecasts: p(beat the universe) for every name every day, IC / hit rate / Brier / calibration, forecast portfolio)
 data/llm_cache/ every LLM prompt/response keyed by content hash (replays are reproducible; delete to refetch)
 notebooks/      01 data+engine, 02 first LLM cycles, 03 model/prompt comparison, 03_new_rule = 03 with a 25% position limit,
                 04 the story — the same results explained for non-specialists (reads data/summary/, no model calls)
+                05 forecast first — 50 forecasts a day scored before any trade (rank IC, Brier, calibration, 1,000 random forecasters), then a mechanical portfolio to separate signal from implementation
 data/summary/   the few tables notebook 04 reads (committed; written by scripts/export_summary.py from the 03 runs)
 tests/          engine, controls, null-distribution and LLM-agent tests
 data/           price cache and replay results (gitignored)
@@ -73,6 +75,7 @@ python scripts/make_notebook_03.py              # -> notebooks/03_model_comparis
 python scripts/make_notebook_03.py --cap 0.25   # -> notebooks/03_new_rule_model_comparison.ipynb
 python scripts/export_summary.py                # -> data/summary/  (from the two runs above)
 python scripts/make_notebook_04.py              # -> notebooks/04_the_story.ipynb (plain-language version; runs in seconds)
+python scripts/make_notebook_05.py              # -> notebooks/05_forecast_first.ipynb (one model call per day, ~2-4 h on a laptop, cached)
 ```
 
 Notebook 04 is the one to send to someone who is not a data scientist: one question per section, one picture per
