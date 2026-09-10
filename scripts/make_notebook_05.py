@@ -72,7 +72,7 @@ scorecard(fc_controls, targets).round(3)""")
 
 md("""## 2. The model (long — leave it running)
 
-One call per day: the universe table for all 50 names plus SPY candles in (~8-10k tokens), a JSON list of 50 probabilities out. Ollama's structured output restricts symbols to the universe. A call that returns fewer than half the names is sent back once with the error; whatever comes back is kept and the missing names stay NaN (they are simply not scored). Cached after the first run.""")
+One call per day: the universe table for all 50 names plus SPY candles in (~8-10k tokens), a JSON list of 50 probabilities out. Nothing is traded at this stage, so there is no equity to print; instead each line shows how many names came back, the mean probability (should sit near 0.5), that day's rank IC against the already-known outcome, and the running mean IC — the number section 3 will report. Ollama's structured output restricts symbols to the universe. A call that returns fewer than half the names is sent back once with the error; whatever comes back is kept and the missing names stay NaN (they are simply not scored). Cached after the first run.""")
 
 code("""backend = OllamaBackend(think=False)
 MODEL = "qwen3:8b"
@@ -80,10 +80,14 @@ assert any(m.startswith(MODEL) for m in backend.list_models()), f"{MODEL} not pu
 
 llm = LLMForecaster(f"{MODEL.replace(':', '-')}_fc_h{HORIZON}", backend, MODEL, horizon=HORIZON, cache_dir=LLM_CACHE)
 
-def on_date(i, n, t, elapsed):
+def on_date(i, n, t, elapsed, frames):
     r = llm.records[-1] if llm.records else None
     tag = "cached" if (r and r.cached) else f"{(r.latency_s if r else 0):.0f}s"
-    print(f"  {i:3d}/{n} {t.date()}  {tag:>7}  names {r.n_valid if r else 0:2d}  elapsed {elapsed/60:4.0f} min  eta {(elapsed/i)*(n-i)/60:4.0f} min", flush=True)
+    p = frames[llm.name].loc[:t]
+    ic = daily_ic(p, targets["excess"])                     # the window is in the past, so each day's target is already known
+    today = f"{ic.iloc[-1]:+.2f}" if ic.notna().any() and ic.index[-1] == t and ic.iloc[-1] == ic.iloc[-1] else "  n/a"
+    print(f"  {i:3d}/{n} {t.date()}  {tag:>7}  names {r.n_valid if r else 0:2d}  mean p {p.loc[t].mean():.2f}  "
+          f"IC today {today}  running mean IC {ic.mean():+.3f}  elapsed {elapsed/60:4.0f} min  eta {(elapsed/i)*(n-i)/60:4.0f} min", flush=True)
 
 fc_llm = run_forecasts(md, [llm], dates, out_dir=RESULTS / "llm", on_date=on_date)
 forecasts = {**fc_llm, **fc_controls}

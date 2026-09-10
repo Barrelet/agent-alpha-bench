@@ -263,7 +263,8 @@ def run_forecasts(md: MarketData, forecasters: list[Forecaster], dates: pd.Datet
                   out_dir: Path | None = None, on_date=None) -> dict[str, pd.DataFrame]:
     """Every forecaster sees the same payload per date (built once). Returns name -> DataFrame
     (date x symbol) of probabilities, NaN where a forecaster gave none. Saved as parquet per
-    forecaster when out_dir is given. on_date(i, n, date, elapsed) is called after each date."""
+    forecaster when out_dir is given. on_date(i, n, date, elapsed, frames) is called after each
+    date with the frames filled so far (so a caller can score as it goes)."""
     frames = {f.name: pd.DataFrame(np.nan, index=dates, columns=tickers) for f in forecasters}
     for f in forecasters:
         f.reset()
@@ -280,7 +281,7 @@ def run_forecasts(md: MarketData, forecasters: list[Forecaster], dates: pd.Datet
                 if s in frames[f.name].columns:
                     frames[f.name].at[t, s] = p
         if on_date is not None:
-            on_date(i + 1, len(dates), t, time.time() - t0)
+            on_date(i + 1, len(dates), t, time.time() - t0, frames)
     if out_dir is not None:
         out_dir = Path(out_dir); out_dir.mkdir(parents=True, exist_ok=True)
         for name, df in frames.items():
