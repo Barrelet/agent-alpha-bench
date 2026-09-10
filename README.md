@@ -1,5 +1,7 @@
 # agent-alpha-bench
 
+[![tests](https://github.com/Barrelet/agent-alpha-bench/actions/workflows/tests.yml/badge.svg)](https://github.com/Barrelet/agent-alpha-bench/actions/workflows/tests.yml)
+
 An evaluation harness for LLMs acting as medium-term US-equity investors, inspired by
 [TradeRank's AI trading leaderboard](https://www.traderank.ai/ai-trading-leaderboard).
 Every model faces identical data, rules and costs; the harness measures not just who made
