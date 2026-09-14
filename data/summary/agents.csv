@@ -1,15 +1,18 @@
-run,agent,kind,total_return,sharpe,max_drawdown,n_trades,win_rate,biggest_bet_share,best_trade_pnl,total_pnl,stated_confidence
-leaderboard_rules,Prompt 1 — leaderboard mandate,prompt,0.110125,1.872,-0.0754,17,0.118,1.002,1786.4,1101.25,0.85
-leaderboard_rules,Prompt 2 — plus risk rules,prompt,0.049912,0.706,-0.111,5,0.2,0.999,782.4,499.12,0.85
-leaderboard_rules,Prompt 3 — full decision procedure,prompt,-0.008612,-0.565,-0.026,5,0.2,0.201,126.4,-86.12,0.85
-leaderboard_rules,Momentum rule (long only),control,-0.047238,-1.103,-0.0922,51,0.412,0.103,140.37,-472.38,0.85
-leaderboard_rules,Momentum rule (long and short),control,-0.047238,-1.103,-0.0922,51,0.412,0.103,140.37,-472.38,0.85
-leaderboard_rules,Just hold all 50 stocks equally,benchmark,0.054181,1.978,-0.034,0,,,,,
-leaderboard_rules,S&P 500 (SPY),benchmark,0.012542,0.444,-0.0449,0,,,,,
-position_limit,Prompt 1 — leaderboard mandate,prompt,-0.043513,-1.092,-0.1045,14,0.071,0.25,603.36,-435.13,0.848
-position_limit,Prompt 2 — plus risk rules,prompt,0.002584,0.155,-0.0331,4,0.25,0.248,257.51,25.84,0.85
-position_limit,Prompt 3 — full decision procedure,prompt,-0.007836,-0.525,-0.0252,5,0.2,0.201,126.5,-78.36,0.85
-position_limit,Momentum rule (long only),control,-0.047238,-1.103,-0.0922,51,0.412,0.103,140.37,-472.38,0.85
-position_limit,Momentum rule (long and short),control,-0.081834,-1.842,-0.1131,55,0.364,0.103,284.84,-818.34,0.85
-position_limit,Just hold all 50 stocks equally,benchmark,0.054181,1.978,-0.034,0,,,,,
-position_limit,S&P 500 (SPY),benchmark,0.012542,0.444,-0.0449,0,,,,,
+run,agent,model,kind,no_action_days,stopped_out,closed_by_choice,avg_holding_days,total_return,sharpe,max_drawdown,n_trades,win_rate,biggest_bet_share,best_trade_pnl,total_pnl,stated_confidence
+leaderboard_rules,Prompt 1 — leaderboard mandate,Qwen3 8B (laptop),prompt,19.0,11.0,5.0,3.2,0.110125,1.872,-0.0754,17,0.118,1.002,1786.4,1101.25,0.85
+leaderboard_rules,Prompt 2 — plus risk rules,Qwen3 8B (laptop),prompt,35.0,4.0,0.0,14.4,0.049912,0.706,-0.111,5,0.2,0.999,782.4,499.12,0.85
+leaderboard_rules,Prompt 3 — full decision procedure,Qwen3 8B (laptop),prompt,55.0,4.0,0.0,15.0,-0.008612,-0.565,-0.026,5,0.2,0.201,126.4,-86.12,0.85
+leaderboard_rules,Momentum rule (long only),,control,,13.0,28.0,11.9,-0.047238,-1.103,-0.0922,51,0.412,0.103,140.37,-472.38,0.85
+leaderboard_rules,Momentum rule (long and short),,control,,13.0,28.0,11.9,-0.047238,-1.103,-0.0922,51,0.412,0.103,140.37,-472.38,0.85
+leaderboard_rules,Just hold all 50 stocks equally,,benchmark,,,,,0.054181,1.978,-0.034,0,,,,,
+leaderboard_rules,S&P 500 (SPY),,benchmark,,,,,0.012542,0.444,-0.0449,0,,,,,
+position_limit,Prompt 1 — leaderboard mandate,Qwen3 8B (laptop),prompt,7.0,12.0,1.0,4.6,-0.043513,-1.092,-0.1045,14,0.071,0.25,603.36,-435.13,0.848
+position_limit,Prompt 2 — plus risk rules,Qwen3 8B (laptop),prompt,13.0,2.0,1.0,19.5,0.002584,0.155,-0.0331,4,0.25,0.248,257.51,25.84,0.85
+position_limit,Prompt 3 — full decision procedure,Qwen3 8B (laptop),prompt,55.0,4.0,0.0,12.8,-0.007836,-0.525,-0.0252,5,0.2,0.201,126.5,-78.36,0.85
+position_limit,"GPT-5.1, Prompt 1 — leaderboard mandate",GPT-5.1 (OpenAI API),prompt,43.0,5.0,5.0,23.3,-0.063378,-1.791,-0.0866,15,0.267,0.253,146.11,-633.78,0.823
+position_limit,"GPT-5.1, Prompt 2 — plus risk rules",GPT-5.1 (OpenAI API),prompt,38.0,5.0,3.0,27.5,-0.001843,0.034,-0.0846,12,0.333,0.247,406.03,-18.43,0.826
+position_limit,"GPT-5.1, Prompt 3 — full decision procedure",GPT-5.1 (OpenAI API),prompt,28.0,5.0,14.0,17.6,-0.057652,-2.353,-0.0735,23,0.174,0.201,195.16,-576.52,0.832
+position_limit,Momentum rule (long only),,control,,13.0,28.0,11.9,-0.047238,-1.103,-0.0922,51,0.412,0.103,140.37,-472.38,0.85
+position_limit,Momentum rule (long and short),,control,,15.0,30.0,11.5,-0.081834,-1.842,-0.1131,55,0.364,0.103,284.84,-818.34,0.85
+position_limit,Just hold all 50 stocks equally,,benchmark,,,,,0.054181,1.978,-0.034,0,,,,,
+position_limit,S&P 500 (SPY),,benchmark,,,,,0.012542,0.444,-0.0449,0,,,,,

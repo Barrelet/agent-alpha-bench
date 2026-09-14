@@ -29,6 +29,9 @@ RUNS = {  # run id -> (results folder, config suffix, label for the story)
     "position_limit":    ("compare_universe_cap25", "_all50_cap25", "25% position limit"),
 }
 PROMPT_LABEL = {"v1": "Prompt 1 — leaderboard mandate", "v2": "Prompt 2 — plus risk rules", "v3": "Prompt 3 — full decision procedure"}
+# model slug -> (story label, prefix put in front of the prompt label so the agent name stays unique).
+# The local model keeps the bare prompt label; every other model is prefixed, e.g. "GPT-5.1, Prompt 1 — leaderboard mandate".
+MODELS = {"qwen3-8b": ("Qwen3 8B (laptop)", ""), "gpt-5-1": ("GPT-5.1 (OpenAI API)", "GPT-5.1, ")}
 CONTROL_LABEL = {"control_momentum_10d_long": "Momentum rule (long only)", "control_momentum_10d_ls": "Momentum rule (long and short)"}
 
 md = load_prices(ALL_SYMBOLS, "2023-09-01", None, ROOT / "data" / "prices.parquet")
@@ -39,16 +42,22 @@ for run, (folder, sfx, label) in RUNS.items():
     base = RES / folder
     if not base.exists():
         print(f"skip {run}: {base} not found"); continue
-    agents = {f"qwen3-8b_{v}{sfx}": (v, PROMPT_LABEL[v]) for v in ("v1", "v2", "v3")}
+    agents = {f"{slug}_{v}{sfx}": (v, prefix + PROMPT_LABEL[v], model_label)
+              for slug, (model_label, prefix) in MODELS.items() for v in ("v1", "v2", "v3")}
+    model_of, no_action = {}, {}
     eq_ctrl = pd.read_parquet(base / "controls" / "equity.parquet")
     tr_ctrl = pd.read_parquet(base / "controls" / "trades.parquet")
     series, trades = {}, {}
-    for name, (v, lab) in agents.items():
+    for name, (v, lab, model_label) in agents.items():
         d = base / name
         if not d.exists():
             print(f"skip {name}"); continue
         series[lab] = pd.read_parquet(d / "equity.parquet").iloc[:, 0]
         trades[lab] = pd.read_parquet(d / "trades.parquet").assign(prompt=v)
+        model_of[lab] = model_label
+        if (d / "decisions.jsonl").exists():   # days on which the model returned an empty decision list
+            recs = [json.loads(line) for line in (d / "decisions.jsonl").read_text().splitlines() if line.strip()]
+            no_action[lab] = sum(1 for r in recs if not r.get("decision", {}).get("decisions"))
     for name, lab in CONTROL_LABEL.items():
         series[lab] = eq_ctrl[name]
         trades[lab] = tr_ctrl[tr_ctrl["agent"] == name].copy() if "agent" in tr_ctrl else pd.DataFrame()
@@ -66,7 +75,12 @@ for run, (folder, sfx, label) in RUNS.items():
         if len(t):
             eq_at = s.reindex(pd.to_datetime(t["entry_date"])).ffill().to_numpy()
             biggest = float(np.nanmax(t["qty"].to_numpy() * t["entry_price"].to_numpy() / eq_at))
-        agent_rows.append({"run": run, "agent": lab, "kind": "prompt" if lab.startswith("Prompt") else "control" if "rule" in lab else "benchmark",
+        agent_rows.append({"run": run, "agent": lab, "model": model_of.get(lab, ""),
+                           "kind": "prompt" if lab in model_of else "control" if "rule" in lab else "benchmark",
+                           "no_action_days": no_action.get(lab, np.nan),
+                           "stopped_out": int((t["reason"] == "invalidation").sum()) if len(t) else np.nan,
+                           "closed_by_choice": int((t["reason"] == "close").sum()) if len(t) else np.nan,
+                           "avg_holding_days": round(float(t["holding_days"].mean()), 1) if len(t) else np.nan,
                            "total_return": round(m["total_return"], 6), "sharpe": round(m["sharpe"], 3), "max_drawdown": round(m["max_drawdown"], 4),
                            "n_trades": int(len(t)), "win_rate": round(float((t["pnl"] > 0).mean()), 3) if len(t) else np.nan,
                            "biggest_bet_share": round(biggest, 3) if biggest == biggest else np.nan,
@@ -74,7 +88,7 @@ for run, (folder, sfx, label) in RUNS.items():
                            "stated_confidence": round(float(t["confidence"].mean()), 3) if len(t) and t["confidence"].notna().any() else np.nan})
     for lab, t in trades.items():
         for r in t.itertuples():
-            trade_rows.append({"run": run, "agent": lab, "symbol": r.symbol, "side": "long" if r.side > 0 else "short",
+            trade_rows.append({"run": run, "agent": lab, "model": model_of.get(lab, ""), "symbol": r.symbol, "side": "long" if r.side > 0 else "short",
                                "entry_date": str(pd.Timestamp(r.entry_date).date()), "exit_date": str(pd.Timestamp(r.exit_date).date()),
                                "holding_days": int(r.holding_days), "pnl": round(float(r.pnl), 2), "pnl_pct": round(float(r.pnl_pct), 4),
                                "reason": r.reason, "confidence": round(float(r.confidence), 3) if r.confidence == r.confidence else np.nan,

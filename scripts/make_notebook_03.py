@@ -86,7 +86,7 @@ pd.set_option("display.width", 180, "display.max_columns", 40, "display.max_colw
 
 from alphabench.universe import TICKERS, ALL_SYMBOLS, UNIVERSE, BENCHMARK
 from alphabench.market import load_prices
-from alphabench.agents import LLMAgent, OllamaBackend, Momentum10, RandomAgent
+from alphabench.agents import LLMAgent, OllamaBackend, OpenAICompatibleBackend, Momentum10, RandomAgent, load_env_file
 from alphabench.compare import default_configs, mark_runnable, run_configs, PROMPTS
 from alphabench.replay import run_replay, decision_dates
 from alphabench.metrics import leaderboard, equal_weight_index, calibration, concentration
@@ -112,15 +112,22 @@ md("""## 1. Configurations
 
 The list lives in `alphabench/compare.py` (`default_configs`) so the notebook and `scripts/run_compare.py` run exactly the same thing. `prompt` v1 = TradeRank-style mandate, v2 = v1 + risk rules, v3 = full decision procedure; `think` turns on Qwen3's reasoning mode (slower, may decide better). Models that are not pulled are skipped — `ollama pull <name>`.
 
-**Tip:** run the long part from a terminal instead — `python scripts/run_compare.py --candidates universe__CAP_FLAG__` — and come back to this notebook for the tables; the cache makes section 3 instant afterwards.""")
+**Tip:** run the long part from a terminal instead — `python scripts/run_compare.py --candidates universe__CAP_FLAG__` — and come back to this notebook for the tables; the cache makes section 3 instant afterwards.
 
-code("""backends = {False: OllamaBackend(think=False), True: OllamaBackend(think=True)}
+**Hosted frontier model.** `FRONTIER_MODEL` adds the same three prompts on a hosted model through the OpenAI-compatible backend (default `"gpt-5.1"`; set it to `None` to stay fully local, in which case nothing is sent anywhere). The key is read from `OPENAI_API_KEY`, from `local_settings.py` in the repo root (copy `local_settings.example.py` and paste the key) or from a `.env` file — all gitignored. The first pass makes about 200 live calls, roughly $5 at gpt-5.1 list prices; every call is cached, so re-running is free. You can also run the long part from a terminal, `python scripts/run_compare.py --cap 0.25 --frontier gpt-5.1 --frontier-only`, and let this notebook read the cache.""")
+
+code("""FRONTIER_MODEL = "gpt-5.1"    # the same prompts on a hosted model; None = local Ollama configs only, no network calls
+REASONING = "low"             # reasoning_effort for gpt-5 / o-series (part of the cache key)
+load_env_file(ROOT)           # OPENAI_API_KEY from local_settings.py or .env in the repo root
+hosted = OpenAICompatibleBackend(base_url="https://api.openai.com/v1", api_key_env="OPENAI_API_KEY", reasoning_effort=REASONING)
+backends = {False: OllamaBackend(think=False), True: OllamaBackend(think=True), "openai": hosted}
 RUN_THINKING = False          # True also runs qwen3-8b_v3_thinking (~2-3x slower per call)
 ONLY = None                   # e.g. ["qwen3-8b_v3"] to run a single configuration
 
-CONFIGS = mark_runnable(default_configs(think_enabled=RUN_THINKING, candidates=CANDIDATES, max_position_weight=MAX_POSITION_WEIGHT), set(backends[False].list_models()), ONLY)
+CONFIGS = mark_runnable(default_configs(think_enabled=RUN_THINKING, candidates=CANDIDATES, max_position_weight=MAX_POSITION_WEIGHT, frontier_model=FRONTIER_MODEL),
+                        set(backends[False].list_models()), ONLY, available_remote=set(hosted.list_models()) if FRONTIER_MODEL else None)
 for c in CONFIGS:
-    print(f"{'▶' if c['runnable'] else '–'} {c['name']:24s} {c['model']:12s} prompt {c['prompt']}  {c['skip_reason'] or ''}")""")
+    print(f"{'▶' if c['runnable'] else '–'} {c['name']:28s} {c['model']:14s} prompt {c['prompt']}  {c['skip_reason'] or ''}")""")
 
 md("""## 2. Controls and benchmarks (seconds)
 
@@ -298,19 +305,21 @@ axes[0].legend(frameon=False, fontsize=8); plt.tight_layout(); plt.show()""")
 
 FINDINGS_CAPPED = """## 7. What this run found
 
-*From the run of 9 September 2026: 60 cycles, 1 June to 25 August 2026, qwen3:8b on a laptop, whole-universe candidates, 25% position limit. The tables above are the evidence; this section states the reading so that nobody has to derive it.*
+*Two runs on the same 60 cycles, 1 June to 25 August 2026, whole-universe candidates, 25% position limit: qwen3:8b on a laptop (9 September 2026) and gpt-5.1 through the OpenAI API at `reasoning_effort="low"` (14 September 2026, 182 live calls, $3.39). The tables above are the evidence; this section states the reading so that nobody has to derive it.*
 
-**Nothing beat holding the universe.** The equal-weight index of the same 50 names returned +5.4% at a Sharpe of 1.98 — better than 91% of the random long/short traders. The best configuration, v2, returned +0.3% at a Sharpe of 0.16. v3 returned -0.8% and v1 -4.4%. Both benchmarks beat all three prompts; the momentum controls (-4.7% long-only, -8.2% long/short) did no better than the worst of them.
+**Nothing beat holding the universe, at either model size.** The equal-weight index of the same 50 names returned +5.4% at a Sharpe of 1.98 — better than 91% of the random long/short traders. The best configuration in the table is qwen3:8b with prompt v2 at +0.3%; the best gpt-5.1 configuration is v2 at -0.2%. The other four prompt runs finished between -0.8% and -6.3%. Both benchmarks beat all six; the momentum controls (-4.7% long-only, -8.2% long/short) sit among them.
 
-**All three sit inside the band this notebook calls luck.** Against 1,000 random traders drawn from the same universe under the same rules, fees and stops: v2 at the 65th percentile, v3 at the 57th, v1 at the 29th. Section 6 sets roughly the 20th to the 80th as indistinguishable from a coin flip, and all three are inside it. Measured against the long-only null — the fairer comparison on a window that rose — they fall to the 40th, 33rd and 12th. On this window, with this information, the models added nothing that luck does not supply.
+**The frontier model did not move the return, and its percentiles are lower.** gpt-5.1 finished at -6.3% (v1), -0.2% (v2) and -5.8% (v3), against qwen3:8b's -4.4%, +0.3% and -0.8%. Against 1,000 random long/short traders drawn from the same universe under the same rules: gpt-5.1 at the 18th, 63rd and 20th percentiles; qwen3:8b at the 29th, 65th and 57th. gpt-5.1 never opened a short in 50 trades, so the long-only null is the fair comparison for it, and there it sits at the 5th, 37th and 8th percentiles. Two of its three prompts are at the bottom edge of the band this notebook calls luck. Sixty cycles and 12 to 23 trades cannot tell "unlucky" from "worse", but they can rule out "better": on prices alone, the larger model shows no edge the smaller one lacked.
 
-**Stated confidence carries no information.** All three state about 0.85 and realise 7% (v1), 25% (v2) and 20% (v3). Brier scores of 0.669, 0.547 and 0.582 against 0.434 for the long-only momentum control and 0.468 for the long/short one: the models are worse calibrated than a one-line rule, which at least sometimes loses when it says 0.85. Two caveats keep this honest. Confidence barely varies — every trade lands in a single bucket just above the 0.80 gate the engine requires to open — so this is not a calibration curve, it is the finding that confidence is close to a constant. And n is 14, 4 and 5 trades. What can be said is that the number is uniformly too high and uniformly uninformative; how these models would rank a real spread of confidences is untested.
+**What the frontier model did change is behaviour, and every change is visible in section 5.** No invalid output in 182 calls and two repairs in total, against 25 for qwen3:8b. Rule violations of 5%, 14% and 0% against 68%, 86% and 0% — gpt-5.1 does not ask for adds to losing positions or for second opens in a cycle. Every open sized at or under the cap; only adds were scaled back by it (one for v1, four for v2). Stops placed at 5.4% to 7.6% from entry instead of 2.4% to 3.8%, so it was stopped out five times per run instead of up to twelve, and it closed positions by choice (5, 3 and 14 times) far more than qwen3:8b (1, 1 and 0). It did more with the full decision procedure, not less: v3 traded 23 times and acted in 32 of 60 cycles, where qwen3:8b's v3 traded 5 times and acted in 5. And it held longer: 17 to 28 days on average against 5 to 20. This is a model that follows the mandate. It is not a model that finds anything in the price data, and a mandate followed precisely on a signal that is not there produces a tidy sequence of small losses: 19 of gpt-5.1 v3's 23 trades lost, twelve of them closed by choice at -1% to -5% before the stop was hit, and its two largest winners were still open when the window closed.
 
-**Adding risk rules to the prompt made rule-following worse.** v2 is v1 plus risk rules, and the engine had to refuse 86% of its decision items against v1's 68% — mostly adds, to positions not in profit or already at the cap. The rules changed what the model asked for without changing what it understood about its own book. v3, the full decision procedure, violated nothing at all, which is the one clear win for prompt engineering in this table.
+**Stated confidence still carries no information, and now the gate is visible.** Every one of qwen3:8b's 23 trades stated 0.85; every one of gpt-5.1's 50 stated 0.81 to 0.84. Realised win rates were 7% to 25% for qwen3:8b and 17% to 33% for gpt-5.1. The Brier scores (0.669, 0.547, 0.582 against 0.506, 0.467, 0.575) improve only because gpt-5.1's number is a little lower, not because it tracks anything. Both models write the smallest number that clears the 0.80 the engine requires to open — a floor that the prompt states and that both treat as the price of admission. The finding is not "the models are overconfident"; it is that the confidence field, as this harness asks for it, is answered as a permission rather than a probability. Every trade of both models sits in the single bucket above the gate, so the reliability tables are one row each and no calibration curve exists to draw. Asking for a probability without a threshold, or scoring a forecast that is separate from the decision to act, is the next design change, before any bigger model is tried.
 
-**v3 barely played.** 55 of 60 cycles ended with an empty decision list; it opened five positions (four long, one short) and traded five times. Its -0.8% is close to what not trading at all would have returned, and every v3 number here rests on n = 5. Read it as a model that declined to act rather than one that acted well.
+**Adding risk rules to the prompt made rule-following worse for the small model and not for the large one.** v2 is v1 plus risk rules. For qwen3:8b the engine had to refuse 86% of v2's decision items against v1's 68%, mostly adds to positions not in profit or already at the cap; the rules changed what it asked for without changing what it understood about its own book. For gpt-5.1 the refusal rate is 14% against 5%, all of it adds — to a name at the cap or not yet in profit. v3, the full decision procedure, produced zero violations from both models, which remains the one clear win for prompt engineering in this table.
 
-**What the position limit changed.** Notebook 03, without the limit, put v1 at +11.0% and the 98th percentile of the plain null — a return produced by adding to one name until it was most of the account, and one that sits at the 90th percentile of the *pyramiding* null, which is the comparison it actually deserves. With the cap in force v1 is the worst of the three. The cap did not make the prompts better; it removed one prompt's licence to place a bet large enough to dominate the comparison. That is the whole reason both notebooks exist."""
+**What the position limit changed.** Notebook 03, without the limit, put qwen3:8b v1 at +11.0% and the 98th percentile of the plain null — a return produced by adding to one name until it was most of the account, and one that sits at the 90th percentile of the *pyramiding* null, which is the comparison it actually deserves. With the cap in force v1 is the worst of the three for both models. The cap did not make the prompts better; it removed one prompt's licence to place a bet large enough to dominate the comparison. That is the whole reason both notebooks exist.
+
+**Cost.** The three gpt-5.1 runs took 45 minutes of wall clock and $3.39 at 12 to 19 seconds a call; the cache makes every re-run free. A frontier model is not the expensive part of this experiment."""
 
 FINDINGS_PLAIN = """## 7. What this run found
 
@@ -328,8 +337,17 @@ FINDINGS_PLAIN = """## 7. What this run found
 
 **Read this notebook next to `03_new_rule_model_comparison`**, which runs the same experiment with a 25% per-name cap. Under the cap v1 is the worst of the three rather than the best, which is the clearest evidence in the project that this comparison was measuring sizing licence rather than judgement."""
 
-md((FINDINGS_CAPPED if CAPPED else FINDINGS_PLAIN) + """
+NEXT_CAPPED = """
+### What would change the conclusion
 
+- **A confidence that is not a gate.** Both models answered the confidence field with the smallest value that lets a trade through. `notebooks/05_forecast_first.ipynb` asks for a forecast first and decides afterwards; until confidence is scored on its own, nothing here says whether either model can rank its own ideas.
+- **Information, not model size.** Going from 8B parameters on a laptop to a frontier model changed behaviour and not return, on prices alone. The next input to add is what the price data does not contain — company filings — and the metric to watch first is whether confidence starts to vary.
+- **Reasoning budget.** gpt-5.1 ran at `reasoning_effort="low"`; `medium` or `high` costs two to three times more and is untested here.
+- **More trades, not more cycles.** Sixty cycles is enough to measure rule-following and validity. It is not enough to separate returns when the configurations trade four to twenty-three times. Trade count is the binding constraint on everything in section 4.
+- **Other windows.** Everything above is one rising quarter. A finding that survives 2024 and 2025 is a finding; this one is a reading.
+- **A better null, not a better story.** The honest summary of any configuration is its percentile, not its return. Anything inside the middle of the random-trader distribution has shown nothing, however green the equity curve looks."""
+
+NEXT_PLAIN = """
 ### What would change the conclusion
 
 - **A larger model.** Only qwen3:8b ran here. If the 14B or 12B beats it on return *and* Sharpe against the same controls, model size is the lever, and the next rung is a hosted frontier model via `OpenAICompatibleBackend`.
@@ -337,7 +355,9 @@ md((FINDINGS_CAPPED if CAPPED else FINDINGS_PLAIN) + """
 - **Other windows.** Everything above is one rising quarter. A finding that survives 2024 and 2025 is a finding; this one is a reading.
 - **A better null, not a better story.** The honest summary of any configuration is its percentile, not its return. Anything inside the middle of the random-trader distribution has shown nothing, however green the equity curve looks.
 
-Next: the same table on 2024 and 2025 windows (regime dependence), then the candle ablation (`include_summary` / `n_daily`) on the best configuration.""")
+Next: the same table on 2024 and 2025 windows (regime dependence), then the candle ablation (`include_summary` / `n_daily`) on the best configuration."""
+
+md((FINDINGS_CAPPED + NEXT_CAPPED) if CAPPED else (FINDINGS_PLAIN + NEXT_PLAIN))
 
 nb["cells"] = cells
 nb.metadata["kernelspec"] = {"name": "python3", "display_name": "Python 3", "language": "python"}

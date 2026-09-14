@@ -19,7 +19,7 @@ md("""# Can an AI trade stocks? I built a test to find out.
 
 **The question.** Websites like Alpha Arena and TradeRank.ai let AI language models trade pretend money and rank them by how much they made. A model at the top of such a list looks clever. But is it? A rising market lifts everyone, a lucky bet lifts anyone, and the leaderboard never asks. I wanted a way to tell skill from luck.
 
-**The short answer, so you can stop here if you like.** Over one summer, with one small AI model and three different sets of instructions, nothing beat the dullest strategy there is: buying all fifty stocks and doing nothing. The one result that looked impressive turned out to be a single lucky bet. And the model said it was 85% sure of every trade it made, while only one trade in seven made money.
+**The short answer, so you can stop here if you like.** Over one summer, with two AI models — a small one that runs on my laptop and one of the largest available, GPT-5.1 — and three different sets of instructions, nothing beat the dullest strategy there is: buying all fifty stocks and doing nothing. The one result that looked impressive turned out to be a single lucky bet. The big model followed the rules far better than the small one and made less money. And both models said they were more than 80% sure of every trade they made, while between one in seven and one in three made money.
 
 The rest of this notebook shows how I know that.""")
 
@@ -46,7 +46,7 @@ Every player sees the same information: the last few weeks of prices and a few s
 
 md("""## 2. The players
 
-**Three AI players.** The same AI model each time (Qwen3, an 8-billion-parameter open model that runs on my laptop), with three different sets of instructions, or *prompts*:
+**Three AI players.** The same AI model each time (Qwen3, an 8-billion-parameter open model that runs on my laptop; a much larger model joins in section 6), with three different sets of instructions, or *prompts*:
 
 - **Prompt 1** — the instructions copied from the leaderboards: manage the account, explain each bet, set a stop-loss.
 - **Prompt 2** — the same, plus some risk rules: how big a bet should be, how far away the stop-loss belongs.
@@ -111,25 +111,47 @@ code("""luck_chart(S, "position_limit");""")
 
 md("""All three prompts sit in the middle of the pack, somewhere between beating 30 and 65 random traders in 100. That is the range a coin-flipper lands in most of the time. The do-nothing strategy beat 91 in 100 — without making a single decision.""")
 
-md("""## 6. Did the model know when it was right?
+md("""## 6. Is it just because the model is small?
+
+The obvious objection to everything so far: Qwen3 8B is a small model that fits on a laptop, and the models on the leaderboards are a hundred times larger. So I gave the same three prompts, the same 60 days, the same 50 stocks and the same 25% limit to GPT-5.1, one of the largest models available, through OpenAI's API. Three full runs cost $3.39 and took 45 minutes.
+
+The bold lines are GPT-5.1; the faint ones are the small model from section 5.""")
+
+code("""model_chart(S);""")
+
+code("""scoreboard(S, "position_limit", agents=PROMPTS_GPT + PROMPTS + [INDEX])""")
+
+md("""The big model made less money, not more: −6.3%, −0.2% and −5.8% against the small model's −4.4%, +0.3% and −0.8%. Doing nothing still made +5.4%. Against the coin-flippers, its three prompts beat 18, 63 and 20 in 100 — and because GPT-5.1 never once bet on a stock falling, the fairer comparison is with the 500 coin-flippers who only ever bought, and there it beat 5, 37 and 8 in 100. Two of its three prompts finished near the bottom of the pack.
+
+What *did* change is how it played. This table comes from the trade logs; read it as habits rather than results.""")
+
+code("""behaviour_table(S)""")
+
+md("""GPT-5.1 broke the rules almost never, where most of what the small model asked for under Prompts 1 and 2 had to be refused by the simulator. It sized every bet by itself, placed its stop-losses further away so it was stopped out less often, held for weeks rather than days, and when told to follow the full step-by-step procedure it did more with it, not less — 23 trades, and 14 positions closed by its own choice rather than by the stop-loss. That is a model that does what it is told, precisely.
+
+The trouble is what it was told to do with prices alone. A model that follows a careful procedure on a signal that is not there produces a tidy sequence of small losses: 19 of its 23 trades under Prompt 3 lost money, most of them closed by choice at −1% to −5% before the stop-loss was hit, and its two largest winners were still open when the summer ended. Being a hundred times larger changed the manners, not the result.""")
+
+md("""## 7. Did the models know when they were right?
 
 Every time an AI player made a bet, it also had to say how confident it was, as a number between 0 and 1. This is the part of the experiment I care about most, because a model that *knows* when it is unsure would be useful even if it were not a great trader: you could trust it more when it says 0.95 and less when it says 0.80.
 
-Here is what the model said, next to what actually happened, for every prompt in both runs.""")
+Here is what each model said, next to what actually happened, for every prompt in every run.""")
 
 code("""confidence_chart(S);""")
 
-md("""The model said it was 85% sure on every trade — all 50 of them across both runs, whatever stock, whatever the situation. In reality between 7% and 25% of its trades made money. Its confidence was not a judgement; it was a number it had learned to write down.
+md("""The small model said it was 85% sure on every trade — all 23 of them in this run, all 27 in the first, whatever stock, whatever the situation. GPT-5.1 said 81% to 84% on every one of its 50. In reality, between 7% and 33% of the trades made money.
 
-Of the three findings in this notebook, this is the one I would bet survives a longer test. The returns might change with a different summer. A confidence figure that never moves cannot mean anything in any summer.""")
+Look at where the grey dots sit: just above the dotted line. The rules of the game say a bet needs a confidence of at least 0.80 to be placed, and that is exactly what both models wrote — the smallest number that gets the trade through. So the honest reading is not "the models are overconfident". It is that a confidence figure attached to the decision to act is answered as a permission slip, not as a forecast, and it tells you nothing about whether the model has any idea. That is partly a flaw in how I asked the question, and it is the first thing to change: ask for the forecast separately from the trade, with no threshold, and score it on its own.
 
-md("""## 7. What this does and does not show
+Of the findings in this notebook, this is the one I would bet survives a longer test and a bigger model — it already survived one. The returns might change with a different summer. A confidence figure that barely moves cannot mean anything in any summer.""")
 
-**What it shows.** Over one summer, with one small model, nothing the AI did beat holding the fifty stocks and waiting. The result that looked good was one bet that the rules should not have allowed. The model's confidence carried no information. And a leaderboard that only reports returns would have shown you none of this — it would have shown Prompt 1 at +11% and moved on.
+md("""## 8. What this does and does not show
 
-**What it does not show.** That AI cannot trade. This is one 8-billion-parameter model that fits on a laptop; the models on the leaderboards are a hundred times larger. It is sixty days in a calm, rising market. The AI players made between 4 and 17 trades each, which is far too few to measure skill even if it were there. And the information they had — prices and a few statistics — is thin.
+**What it shows.** Over one summer, nothing either AI model did beat holding the fifty stocks and waiting. The result that looked good was one bet that the rules should not have allowed. A model a hundred times larger followed the rules far better and made less. Neither model's confidence carried information, partly because of how the question was asked. And a leaderboard that only reports returns would have shown you none of this — it would have shown Prompt 1 at +11% and moved on.
 
-**What I would do next.** Run a full year, so each player makes enough trades to measure. Try a larger model. And keep the three tests — a do-nothing benchmark, a thousand coin-flippers, and a check on stated confidence — because they are what turned a leaderboard number into an answer.""")
+**What it does not show.** That AI cannot trade. It is sixty days in a calm, rising market. The AI players made between 4 and 23 trades each, which is far too few to measure skill even if it were there — enough to rule out "clearly better than a coin", not enough to rule out a small edge. And the information they had — prices and a few statistics — is thin; a model given news or company filings is a different experiment. GPT-5.1 also ran at its lowest reasoning setting; more thinking time is untested here.
+
+**What I would do next.** Give the models information that prices do not contain, starting with company filings, and watch whether their confidence starts to vary before watching the returns. Ask for the forecast separately from the trade. Run a full year, so each player makes enough trades to measure. And keep the three tests — a do-nothing benchmark, a thousand coin-flippers, and a check on stated confidence — because they are what turned a leaderboard number into an answer.""")
 
 md("""---
 
@@ -151,7 +173,7 @@ md("""---
 
 ### Where the numbers come from
 
-Everything in this notebook is read from `data/summary/`, a small set of tables written by `scripts/export_summary.py` from the two full runs (`03_model_comparison.ipynb` without the position limit, `03_new_rule_model_comparison.ipynb` with it). Those notebooks contain the complete tables, the code that produced them, and the caveats in full.""")
+Everything in this notebook is read from `data/summary/`, a small set of tables written by `scripts/export_summary.py` from the two full runs (`03_model_comparison.ipynb` without the position limit, `03_new_rule_model_comparison.ipynb` with it — the second also holds the GPT-5.1 runs). Those notebooks contain the complete tables, the code that produced them, and the caveats in full.""")
 
 nb["cells"] = cells
 nb.metadata["kernelspec"] = {"name": "python3", "display_name": "Python 3", "language": "python"}

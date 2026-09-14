@@ -67,7 +67,7 @@ def concentration(fills: pd.DataFrame, trades: pd.DataFrame, equity: pd.Series) 
     out = {"max_position_weight": np.nan, "max_gross_exposure": np.nan, "n_adds": 0, "best_trade_share": np.nan, "best_trade_pnl": np.nan}
     if fills is None or fills.empty:
         return out
-    f = fills.sort_values("date").copy()
+    f = fills.sort_values("date", kind="stable").copy()   # keep engine order within a day (closes before opens)
     f["signed_qty"] = f["side"] * f["qty"]
     eq = equity.reindex(pd.to_datetime(f["date"])).ffill().to_numpy()
     running: dict[str, float] = {}

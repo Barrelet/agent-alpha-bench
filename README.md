@@ -15,12 +15,14 @@ See `BLUEPRINT.md` for the design and roadmap. MIT licensed; a research harness,
 
 ![Where three LLM prompts land among 500 random traders](docs/random_traders.png)
 
-One summer, one 8B model (Qwen3 on a laptop), three prompts, 50 large US stocks, the leaderboards' rules plus a
-25% position limit. Every prompt is scored against two things no leaderboard shows: a do-nothing portfolio and
-1,000 random traders playing by the same rules. Under the leaderboards' rules one prompt finished +11%, which
-turned out to be a single lucky bet that the position limit removes. With the limit, all three prompts land in the
-middle of the random pack; holding all 50 stocks beat 91 of 100 coin-flippers without a single decision. And the
-model stated 85% confidence on every one of its 50 trades, while 7–25% of them made money.
+One summer, two models (Qwen3 8B on a laptop, GPT-5.1 through the OpenAI API), three prompts, 50 large US
+stocks, the leaderboards' rules plus a 25% position limit. Every prompt is scored against two things no
+leaderboard shows: a do-nothing portfolio and 1,000 random traders playing by the same rules. Under the
+leaderboards' rules one prompt finished +11%, which turned out to be a single lucky bet that the position limit
+removes. With the limit, the small model's three prompts land in the middle of the random pack; GPT-5.1 followed
+the rules far better and finished at −6.3%, −0.2% and −5.8%, near the bottom of it. Holding all 50 stocks beat
+91 of 100 coin-flippers without a single decision. And both models stated the smallest confidence the rules
+accept — 0.85 and 0.81–0.84 — on every one of their 100 trades across both runs, while 7–33% of those trades made money.
 
 ## Disclaimer
 
@@ -48,7 +50,7 @@ Ollama tips for this workload (prompts are ~9k tokens of numbers; prompt *readin
 - on Apple silicon, flash attention + an 8-bit KV cache usually speed up prompt reading and halve cache memory:
   `launchctl setenv OLLAMA_FLASH_ATTENTION 1 && launchctl setenv OLLAMA_KV_CACHE_TYPE q8_0`, then quit and relaunch the Ollama app.
 - `ollama stop <model>` unloads a model so the next call picks up new settings. Paid providers go through
-`OpenAICompatibleBackend` (set `OPENROUTER_API_KEY` or similar).
+`OpenAICompatibleBackend` — see *Hosted frontier model* below.
 
 ## Layout
 
@@ -91,6 +93,24 @@ refreshed. Two things sit outside that: yfinance adjusts prices retroactively fo
 so a fresh clone can see slightly different history for the same dates; and `data/llm_cache/` is what
 makes a re-run free — delete it and the models are queried again, and a local model is not bit-identical
 across versions. Cached, the notebooks replay exactly. Uncached, treat a run as a re-run rather than a replay.
+
+## Hosted frontier model
+
+The same prompts can run on a hosted model through `OpenAICompatibleBackend` (OpenAI by default; any
+OpenAI-style endpoint via `--base-url`). Put the key in `local_settings.py` in the repo root (copy
+`local_settings.example.py`; the real file is gitignored) or in a `.env` file, or export it in the shell:
+
+```bash
+cp local_settings.example.py local_settings.py          # then paste the key into it
+python scripts/run_compare.py --list-models                                  # what the API offers
+python scripts/run_compare.py --cap 0.25 --frontier gpt-5.1 --frontier-only  # three prompts, ~200 calls, ~$5
+```
+
+Reasoning models (gpt-5, o-series) get `max_completion_tokens` and `reasoning_effort` (`--reasoning low`
+by default; it is part of the cache key) instead of `temperature`, which they do not accept. Configs are
+named `<model>_<prompt>_all50_cap25`, results land next to the local ones, and every call is cached, so the
+notebook replays for free. Costs are estimated from `PRICES_PER_MTOK` in `alphabench/compare.py` and printed
+per configuration; the table is hand-maintained, so check the provider's price list before quoting a total.
 
 ## Position limit
 

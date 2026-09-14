@@ -119,38 +119,132 @@ class OllamaBackend(Backend):
         )
 
 
+def load_env_file(path: Path | str = ".env") -> dict[str, str]:
+    """Read secrets into os.environ (existing variables win). Accepts a `.env` file of
+    KEY=VALUE lines, or a Python file such as `local_settings.py` with `OPENAI_API_KEY = "sk-..."`
+    at module level — both are gitignored, so keys never reach a notebook or a commit.
+    Given a directory, tries `local_settings.py` then `.env` inside it."""
+    import os
+    p = Path(path)
+    if p.is_dir():
+        loaded = load_env_file(p / "local_settings.py")
+        return loaded or load_env_file(p / ".env")
+    loaded = {}
+    if not p.exists():
+        return loaded
+    if p.suffix == ".py":
+        ns: dict = {}
+        exec(compile(p.read_text(), str(p), "exec"), ns)
+        for k, v in ns.items():
+            if k.isupper() and isinstance(v, str) and k not in os.environ:
+                os.environ[k] = v
+                loaded[k] = v
+        return loaded
+    for line in p.read_text().splitlines():
+        line = line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        k, v = line.split("=", 1)
+        k, v = k.strip(), v.strip().strip('"').strip("'")
+        if k and k not in os.environ:
+            os.environ[k] = v
+            loaded[k] = v
+    return loaded
+
+
+#: models whose chat-completions API takes `max_completion_tokens`, ignores `temperature`
+#: (fixed at 1) and accepts `reasoning_effort` — OpenAI's reasoning families.
+REASONING_PREFIXES = ("gpt-5", "o1", "o3", "o4")
+REASONING_TOKEN_BUDGET = 6_000   # extra completion tokens reserved for hidden reasoning
+
+
 class OpenAICompatibleBackend(Backend):
     """Any OpenAI-style /chat/completions endpoint: OpenAI, OpenRouter, Groq,
-    Together, Mistral, a local vLLM… `api_key_env` names the environment variable."""
+    Together, Mistral, a local vLLM… `api_key_env` names the environment variable.
+
+    Reasoning models (gpt-5*, o-series) are handled: `max_completion_tokens` instead of
+    `max_tokens`, no `temperature`, and `reasoning_effort` (part of the cache signature).
+    Transient failures (429, 5xx, timeouts) are retried with backoff."""
     name = "openai_compatible"
 
     def __init__(self, base_url: str = "https://openrouter.ai/api/v1", api_key_env: str = "OPENROUTER_API_KEY",
-                 timeout: int = 300, extra_headers: dict | None = None, use_json_schema: bool = True):
+                 timeout: int = 300, extra_headers: dict | None = None, use_json_schema: bool = True,
+                 reasoning_effort: str | None = None, max_retries: int = 4):
         import os
         self.base_url, self.timeout = base_url.rstrip("/"), timeout
+        self.api_key_env = api_key_env
         self.api_key = os.environ.get(api_key_env, "")
         self.extra_headers, self.use_json_schema = extra_headers or {}, use_json_schema
-        self.name = "openrouter" if "openrouter" in base_url else "openai_compatible"
+        self.reasoning_effort, self.max_retries = reasoning_effort, max_retries
+        self.name = "openrouter" if "openrouter" in base_url else "openai" if "api.openai.com" in base_url else "openai_compatible"
 
-    def complete(self, system, user, model, temperature, schema, seed=None, max_tokens=900) -> LLMResponse:
+    @property
+    def signature(self) -> dict:
+        """Options that change the answer, hashed into the cache key."""
+        sig = {"base_url": self.base_url}
+        if self.reasoning_effort:
+            sig["reasoning_effort"] = self.reasoning_effort
+        return sig
+
+    @staticmethod
+    def is_reasoning_model(model: str) -> bool:
+        m = model.lower().split("/")[-1]
+        return m.startswith(REASONING_PREFIXES)
+
+    def _headers(self) -> dict:
+        if not self.api_key:
+            raise RuntimeError(f"no API key: set {self.api_key_env} in the environment or in .env")
+        return {"Authorization": f"Bearer {self.api_key}", **self.extra_headers}
+
+    def list_models(self) -> list[str]:
         import requests
-        body = {"model": model, "temperature": temperature, "max_tokens": max_tokens,
-                "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}]}
+        r = requests.get(f"{self.base_url}/models", headers=self._headers(), timeout=60)
+        r.raise_for_status()
+        return sorted(m["id"] for m in r.json().get("data", []))
+
+    def build_body(self, system, user, model, temperature, schema, seed=None, max_tokens=900) -> dict:
+        body = {"model": model, "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}]}
+        if self.is_reasoning_model(model):
+            body["max_completion_tokens"] = max_tokens + REASONING_TOKEN_BUDGET
+            if self.reasoning_effort:
+                body["reasoning_effort"] = self.reasoning_effort
+        else:
+            body["temperature"] = temperature
+            body["max_tokens"] = max_tokens
         if seed is not None:
             body["seed"] = seed
         if schema and self.use_json_schema:
             body["response_format"] = {"type": "json_schema", "json_schema": {"name": "decision", "schema": schema, "strict": False}}
         elif schema:
             body["response_format"] = {"type": "json_object"}
+        return body
+
+    def complete(self, system, user, model, temperature, schema, seed=None, max_tokens=900) -> LLMResponse:
+        import requests
+        body = self.build_body(system, user, model, temperature, schema, seed, max_tokens)
         t0 = time.time()
-        r = requests.post(f"{self.base_url}/chat/completions", json=body, timeout=self.timeout,
-                          headers={"Authorization": f"Bearer {self.api_key}", **self.extra_headers})
-        r.raise_for_status()
+        last_err: Exception | None = None
+        for attempt in range(self.max_retries + 1):
+            try:
+                r = requests.post(f"{self.base_url}/chat/completions", json=body, timeout=self.timeout, headers=self._headers())
+                if r.status_code in (429, 500, 502, 503, 504):
+                    raise requests.HTTPError(f"{r.status_code}: {r.text[:300]}", response=r)
+                if r.status_code >= 400:
+                    raise RuntimeError(f"{self.name} {r.status_code}: {r.text[:500]}")   # a 4xx other than 429 will not fix itself
+                break
+            except (requests.HTTPError, requests.ConnectionError, requests.Timeout) as e:
+                last_err = e
+                if attempt == self.max_retries:
+                    raise
+                wait = min(60, 2 ** attempt * 2)
+                log.warning("%s transient error (%s); retry %d/%d in %ds", self.name, str(e)[:120], attempt + 1, self.max_retries, wait)
+                time.sleep(wait)
         out = r.json()
         usage = out.get("usage", {})
-        return LLMResponse(text=out["choices"][0]["message"]["content"] or "", prompt_tokens=usage.get("prompt_tokens"),
+        choice = out["choices"][0]
+        return LLMResponse(text=choice["message"]["content"] or "", prompt_tokens=usage.get("prompt_tokens"),
                            completion_tokens=usage.get("completion_tokens"), latency_s=time.time() - t0,
-                           raw={"id": out.get("id"), "model": out.get("model"), "usage": usage})
+                           raw={"id": out.get("id"), "model": out.get("model"), "usage": usage, "finish_reason": choice.get("finish_reason")})
 
 
 class MockBackend(Backend):
@@ -282,7 +376,9 @@ class LLMAgent(Agent):
             "tokens_per_s": (sum((x.completion_tokens or 0) for x in live) / max(sum(x.latency_s for x in live), 1e-9)) if live else 0.0,
             "prompt_tokens_per_s": (sum((x.prompt_tokens or 0) for x in live if x.prompt_eval_s) / max(sum(x.prompt_eval_s or 0 for x in live), 1e-9)) if any(x.prompt_eval_s for x in live) else None,
             "gen_tokens_per_s": (sum((x.completion_tokens or 0) for x in live if x.eval_s) / max(sum(x.eval_s or 0 for x in live), 1e-9)) if any(x.eval_s for x in live) else None,
-            "cost_usd": pin / 1e6 * self.price_in + pout / 1e6 * self.price_out,
+            "cost_usd": pin / 1e6 * self.price_in + pout / 1e6 * self.price_out,          # what the whole run would cost live
+            "cost_live_usd": (sum(x.prompt_tokens or 0 for x in live) / 1e6 * self.price_in
+                              + sum(x.completion_tokens or 0 for x in live) / 1e6 * self.price_out),   # what this pass actually spent
         }
 
 

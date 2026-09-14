@@ -17,13 +17,21 @@ import numpy as np
 import pandas as pd
 
 PROMPTS = ["Prompt 1 — leaderboard mandate", "Prompt 2 — plus risk rules", "Prompt 3 — full decision procedure"]
+MODEL_LOCAL, MODEL_GPT = "Qwen3 8B (laptop)", "GPT-5.1 (OpenAI API)"
+PROMPTS_GPT = [f"GPT-5.1, {p}" for p in PROMPTS]     # the same three prompts on the hosted frontier model (position-limit run only)
 INDEX = "Just hold all 50 stocks equally"
 SPY = "S&P 500 (SPY)"
 RULE = "Momentum rule (long only)"
 RUN_LABEL = {"leaderboard_rules": "Leaderboard rules (no position limit)", "position_limit": "With a 25% position limit"}
 
 # categorical slots 1-3 for the three prompts; everything that is not a model is grey
-COLOR = {PROMPTS[0]: "#2a78d6", PROMPTS[1]: "#eb6834", PROMPTS[2]: "#1baf7a", INDEX: "#52514e", SPY: "#8a8987", RULE: "#b3b2ae"}
+COLOR = {PROMPTS[0]: "#2a78d6", PROMPTS[1]: "#eb6834", PROMPTS[2]: "#1baf7a", INDEX: "#52514e", SPY: "#8a8987", RULE: "#b3b2ae",
+         PROMPTS_GPT[0]: "#163f7a", PROMPTS_GPT[1]: "#9c3c14", PROMPTS_GPT[2]: "#0d6b48"}
+
+
+def short(name: str) -> str:
+    """'Prompt 1 — leaderboard mandate' -> 'Prompt 1'; 'GPT-5.1, Prompt 1 — …' -> 'GPT-5.1, Prompt 1'."""
+    return name.split(" — ")[0]
 INK, INK2, GRID = "#0b0b0b", "#52514e", "#e6e5e1"
 
 plt.rcParams.update({"font.size": 10.5, "axes.edgecolor": GRID, "axes.labelcolor": INK2, "xtick.color": INK2, "ytick.color": INK2,
@@ -109,11 +117,14 @@ def equity_chart(S: Summary, run: str, title: str | None = None):
     return fig
 
 
-def scoreboard(S: Summary, run: str) -> pd.DataFrame:
-    """Five plain columns per player."""
+def scoreboard(S: Summary, run: str, agents: list[str] | None = None) -> pd.DataFrame:
+    """Five plain columns per player. `agents` defaults to the local model's three prompts plus the
+    rule and the two benchmarks; pass PROMPTS_GPT + PROMPTS + [INDEX] to put both models side by side."""
     a = S.agents[S.agents["run"] == run].set_index("agent")
     rows = []
-    for name in PROMPTS + [RULE, INDEX, SPY]:
+    for name in (agents or PROMPTS + [RULE, INDEX, SPY]):
+        if name not in a.index:
+            continue
         r = a.loc[name]
         rows.append({"Who": name, "Result": _pct(r["total_return"]), "Trades": int(r["n_trades"]) if r["n_trades"] else "—",
                      "Winning trades": f"{r['win_rate']:.0%}" if r["n_trades"] else "—",
@@ -123,22 +134,24 @@ def scoreboard(S: Summary, run: str) -> pd.DataFrame:
 
 
 # ---- 2. was it luck ----------------------------------------------------------------
-def luck_chart(S: Summary, run: str, pyramiding: bool = False, agents: list[str] | None = None):
+def luck_chart(S: Summary, run: str, pyramiding: bool = False, agents: list[str] | None = None, long_only: bool = False):
     """1,000 coin-flip traders' results as a histogram, with each prompt and the passive
-    index drawn as a vertical line where it lands."""
-    r = S.random_returns(run, pyramiding=pyramiding)
+    index drawn as a vertical line where it lands. `long_only=True` uses the 500 random
+    traders that never short — the fair comparison for a player that never shorted."""
+    r = S.random_returns(run, pyramiding=pyramiding, long_only=long_only)
+    is_model = set(PROMPTS + PROMPTS_GPT)
     fig, ax = plt.subplots(figsize=(11, 4.6))
     ax.hist(r, bins=45, color="#d9d8d3", edgecolor="white", lw=0.6)
     ymax = ax.get_ylim()[1]
     names = agents or PROMPTS + [INDEX]
     for i, name in enumerate(names):
         v = S.value(run, name, "total_return")
-        ax.axvline(v, color=COLOR[name], lw=2.2 if name in PROMPTS else 1.6, ls="-" if name in PROMPTS else "--")
-        beaten = S.beat_share(run, name, pyramiding=pyramiding)
-        ax.text(v, ymax * (0.96 - 0.11 * i), f"  {name.split(' — ')[0]} {_pct(v)}: beat {beaten:.0f} in 100", color=COLOR[name], fontsize=9.5, va="top",
-                fontweight="bold" if name in PROMPTS else "normal", bbox=dict(facecolor="white", alpha=0.85, edgecolor="none", pad=1.5))
+        ax.axvline(v, color=COLOR[name], lw=2.2 if name in is_model else 1.6, ls="-" if name in is_model else "--")
+        beaten = S.beat_share(run, name, pyramiding=pyramiding, long_only=long_only)
+        ax.text(v, ymax * (0.96 - 0.11 * i), f"  {short(name)} {_pct(v)}: beat {beaten:.0f} in 100", color=COLOR[name], fontsize=9.5, va="top",
+                fontweight="bold" if name in is_model else "normal", bbox=dict(facecolor="white", alpha=0.85, edgecolor="none", pad=1.5))
     ax.xaxis.set_major_formatter(plt.FuncFormatter(lambda v, _: f"{v:+.0%}"))
-    who = "500 coin-flip traders" + (" who were also allowed to keep adding to winners" if pyramiding else "")
+    who = "500 coin-flip traders" + (" who were also allowed to keep adding to winners" if pyramiding else "") + (" who only ever bought" if long_only else "")
     ax.set_title(f"{RUN_LABEL[run]} — where {who} ended up", loc="left")
     ax.set_xlabel("result over the window"); _tidy(ax, "number of random traders")
     fig.tight_layout()
@@ -197,27 +210,77 @@ def confidence_chart(S: Summary):
     """Stated confidence next to the share of trades that actually made money, for every
     prompt in both runs."""
     a = S.agents[S.agents["kind"] == "prompt"].copy()
-    a["label"] = [f"{p.split(' — ')[0]}, {'leaderboard rules' if r == 'leaderboard_rules' else '25% limit'}  (n={int(n)})" for p, r, n in zip(a["agent"], a["run"], a["n_trades"])]
-    a = a.sort_values(["run", "agent"]).reset_index(drop=True)
-    fig, ax = plt.subplots(figsize=(10, 4.6))
+    a["is_gpt"] = a["agent"].isin(PROMPTS_GPT)
+    a["label"] = [f"{short(p)}, {'leaderboard rules' if r == 'leaderboard_rules' else '25% limit'}  (n={int(n)})" for p, r, n in zip(a["agent"], a["run"], a["n_trades"])]
+    a = a.sort_values(["is_gpt", "run", "agent"]).reset_index(drop=True)
+    fig, ax = plt.subplots(figsize=(10, 0.5 * len(a) + 1.8))
     y = np.arange(len(a))
     for i, r in a.iterrows():
         ax.plot([r["win_rate"], r["stated_confidence"]], [i, i], color=GRID, lw=2, zorder=1)
         ax.scatter(r["stated_confidence"], i, color=INK2, s=70, zorder=2)
         ax.scatter(r["win_rate"], i, color=COLOR[r["agent"]], s=90, zorder=3)
         ax.text(r["win_rate"] - 0.02, i, f"{r['win_rate']:.0%}", ha="right", va="center", fontsize=9.5, color=INK)
-    ax.text(a["stated_confidence"].iloc[0] + 0.02, 0, "said: 85% sure", color=INK2, fontsize=9.5, va="center")
+        ax.text(r["stated_confidence"] + 0.02, i, f"said: {r['stated_confidence']:.0%} sure", color=INK2, fontsize=9, va="center")
+    ax.axvline(0.80, color=INK2, lw=0.8, ls=":")
+    ax.text(0.80, len(a) - 0.45, " 0.80 = the lowest confidence the rules accept for a bet", ha="right", va="center", fontsize=8.5, color=INK2, style="italic")
     ax.set_yticks(y); ax.set_yticklabels(a["label"], fontsize=9.5)
     ax.set_xlim(-0.02, 1.0); ax.xaxis.set_major_formatter(plt.FuncFormatter(lambda v, _: f"{v:.0%}"))
     ax.set_xlabel("share of trades that made money (coloured)  vs  confidence the model stated on those trades (grey)")
-    ax.set_title("The model said it was 85% sure on every single trade. Here is how often it was right.", loc="left")
+    ax.set_title("What each model said it was sure of, and how often it was right", loc="left")
     ax.spines[["top", "right"]].set_visible(False); ax.grid(axis="x", color=GRID, lw=0.8); ax.set_axisbelow(True)
     ax.invert_yaxis()
     fig.tight_layout()
     return fig
 
 
-def confidence_facts(S: Summary) -> dict:
-    t = S.trades[S.trades["agent"].isin(PROMPTS)]
+def confidence_facts(S: Summary, agents: list[str] | None = None) -> dict:
+    t = S.trades[S.trades["agent"].isin(agents or PROMPTS)]
     return {"n_trades": int(len(t)), "min_conf": float(t["confidence"].min()), "max_conf": float(t["confidence"].max()),
             "share_won": float((t["pnl"] > 0).mean())}
+
+
+# ---- 6. a much bigger model ------------------------------------------------------
+def model_chart(S: Summary, run: str = "position_limit"):
+    """Account value for the three prompts on the frontier model (solid) next to the same
+    prompts on the local model (faint), with the passive index as the bar to clear."""
+    e = S.equity[S.equity["run"] == run].pivot(index="date", columns="agent", values="equity")
+    e = e / e.iloc[0] * 100
+    fig, ax = plt.subplots(figsize=(11, 5))
+    order = [n for n in [INDEX] + PROMPTS + PROMPTS_GPT if n in e]
+    ends = [float(e[n].dropna().iloc[-1]) for n in order]
+    span = float(e.max().max() - e.min().min())
+    ys = _spread(ends, gap=span * 0.055)
+    for name, y in zip(order, ys):
+        s = e[name].dropna()
+        if name in PROMPTS_GPT: style = dict(lw=2.4)
+        elif name in PROMPTS: style = dict(lw=1.4, alpha=0.45)
+        else: style = dict(lw=1.6, ls="--")
+        ax.plot(s.index, s.values, color=COLOR[name], **style)
+        ax.text(s.index[-1], y, f"  {short(name)}  {_pct(S.value(run, name, 'total_return'))}", color=COLOR[name], va="center", fontsize=9.5,
+                fontweight="bold" if name in PROMPTS_GPT else "normal", alpha=1.0 if name not in PROMPTS else 0.7)
+    ax.axhline(100, color=GRID, lw=1)
+    ax.set_title(f"GPT-5.1 (bold) next to Qwen3 8B (faint) — same game, same three prompts, 25% position limit\n{S.window(run)}", loc="left")
+    ax.set_xlim(e.index[0], e.index[-1] + pd.Timedelta(days=14))
+    _tidy(ax, "account value (start = 100)")
+    fig.tight_layout()
+    return fig
+
+
+def behaviour_table(S: Summary, run: str = "position_limit") -> pd.DataFrame:
+    """How each model played, from the trade log: not the result, the habits behind it."""
+    a = S.agents[(S.agents["run"] == run) & (S.agents["kind"] == "prompt")].set_index("agent")
+    t = S.trades[S.trades["run"] == run]
+    rows = []
+    for name in PROMPTS + PROMPTS_GPT:
+        if name not in a.index:
+            continue
+        r = a.loc[name]; tt = t[t["agent"] == name]
+        n = int(r["n_trades"])
+        rows.append({"Who": name, "Model": r.get("model", ""), "Result": _pct(r["total_return"]),
+                     "Days it chose to do nothing": f"{int(r['no_action_days'])} of {S.meta['runs'][run]['cycles']}" if r["no_action_days"] == r["no_action_days"] else "—",
+                     "Trades": n, "Bets on a fall (short)": int((tt["side"] == "short").sum()),
+                     "Winning trades": f"{r['win_rate']:.0%}" if n else "—",
+                     "Stopped out": int(r["stopped_out"]) if n else "—", "Closed by choice": int(r["closed_by_choice"]) if n else "—",
+                     "Average days held": f"{r['avg_holding_days']:.0f}" if n else "—",
+                     "Biggest single bet": f"{min(r['biggest_bet_share'], 1.0):.0%}" if n else "—"})
+    return pd.DataFrame(rows).set_index("Who")
